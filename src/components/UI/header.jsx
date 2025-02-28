@@ -1,40 +1,32 @@
 import './header.css';
 import { Nav } from 'react-bootstrap';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
-function Header() {
-
-
+function header() {
     return (
-        <div className='header'>
-            <></>
-            <p>With description, date and price</p>
-          
-            <Nav className='justify-content-end'>
-                <Nav.Item>
-                    <Link to='/'>Inicio</Link> |
-                </Nav.Item>
-                <Nav.Item>
-                    <Link to='/about-us'>Sobre nosotros</Link> |
-                </Nav.Item>
-                <Nav.Item>
-                    <Link to='/products'>Productos</Link> |
-                </Nav.Item>
-                <Nav.Item>
-                    <Link to='/product-new'>Nuevo producto</Link> |
-                </Nav.Item>
-                <Nav.Item>
-                    <Link to='/contact?sede=PAMPLONA&persona=Julián'>Contacto</Link> |
-                </Nav.Item>
-                <Nav.Item>
-                    <Link to='/login'>LOGIN</Link> |
-                </Nav.Item>
-                <Nav.Item>
-                    <Link to='/register'>REGISTRO</Link> |
-                </Nav.Item>
-            </Nav>
+        <div className='header d-flex align-items-center justify-content-between p-3'>
+            <div className='header-left'>
+                <img src='../../public/imgs/icons/logo.png' alt='Logo' width='80' />
+            </div>
+
+            <div className='header-center'>
+                <img src='../../public/imgs/icons/titulo_eslogan.png' alt='Banner' width='200' />
+            </div>
+
+            <div className='header-right'>
+                <Nav className='justify-content-end'>
+                    <Nav.Item>
+                        <Link to='/' className='nav-link'>Pagina principal</Link> |
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Link to='/carrito'>
+                            <img src='../../public/imgs/icons/carrito.png' alt='Carrito' width='30' />
+                        </Link>
+                    </Nav.Item>
+                </Nav>
+            </div>
         </div>
-    )
+    );
 }
 
-export default Header;
+export default header;
