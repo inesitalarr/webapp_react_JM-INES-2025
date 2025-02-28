@@ -2,7 +2,7 @@ import './header.css';
 import { Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-function header() {
+function Header() {
     return (
         <div className='header d-flex align-items-center justify-content-between p-3'>
             <div className='header-left'>
@@ -29,4 +29,4 @@ function header() {
     );
 }
 
-export default header;
+export default Header;
