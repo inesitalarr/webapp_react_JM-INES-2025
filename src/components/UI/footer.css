@@ -1,0 +1,18 @@
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f8f9fa; /* Color clarito */
+    border-top: 2px solid #ddd;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    color: #333;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
