@@ -33,15 +33,14 @@
 }
 
 .nav-link {
-    text-decoration: none;
-    color: #eff6ebfc;
+    
     font-weight: bold;
     margin: 0 15px;
     font-size: 20px;
 }
 
 .nav-link:hover {
-    color: #d5f9ff; 
+    color: #ff4485; 
     transition: 0.3s;
 }
 
