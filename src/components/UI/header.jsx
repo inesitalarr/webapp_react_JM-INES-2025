@@ -1,31 +1,31 @@
 import './header.css';
 import { Nav } from 'react-bootstrap';
-import { Link } from 'react-router';
+import { Link } from 'react-router'; // Cuidado, usa 'react-router-dom' no 'react-router'
 
 function Header() {
     return (
-        <div className='header d-flex align-items-center justify-content-between p-3'>
+        <header className='header'>
             <div className='header-left'>
-                <img src='../../public/imgs/icons/logo.png' alt='Logo' width='80' />
+                <img src='/imgs/icons/logo.png' alt='Logo' width='80' />
             </div>
 
             <div className='header-center'>
-                <img src='../../public/imgs/icons/titulo_eslogan.png' alt='Banner' width='200' />
+                <img src='/imgs/icons/titulo_eslogan.png' alt='Eslogan' width='250' />
             </div>
 
             <div className='header-right'>
-                <Nav className='justify-content-end'>
+                <Nav>
                     <Nav.Item>
-                        <Link to='/' className='nav-link'>Pagina principal</Link> |
+                        <Link to='/' className='nav-link'>Página principal</Link>
                     </Nav.Item>
                     <Nav.Item>
                         <Link to='/carrito'>
-                            <img src='../../public/imgs/icons/carrito.png' alt='Carrito' width='30' />
+                            <img src='/imgs/icons/carrito.png' alt='Carrito' width='30' />
                         </Link>
                     </Nav.Item>
                 </Nav>
             </div>
-        </div>
+        </header>
     );
 }
 

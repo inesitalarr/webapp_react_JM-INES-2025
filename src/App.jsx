@@ -14,12 +14,12 @@ function App() {
     <>
     
       <GlobalContext.Provider value={{}}>
-        <Header></Header>
+        <Header />
         <Routes>
           <Route path='/' element={<Productos />}></Route>
           <Route path='/carrito' element={<Carrito />} />
         </Routes>
-        <Footer></Footer>
+        <Footer />
       </GlobalContext.Provider>
     </>
   )
