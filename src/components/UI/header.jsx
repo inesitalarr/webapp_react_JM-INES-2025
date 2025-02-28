@@ -20,7 +20,7 @@ function Header() {
                     </Nav.Item>
                     <Nav.Item>
                         <Link to='/carrito'>
-                            <img src='/imgs/icons/carrito.png' alt='Carrito' width='30' />
+                            <img src='/imgs/icons/carrito.png' alt='Carrito' width='50' />
                         </Link>
                     </Nav.Item>
                 </Nav>

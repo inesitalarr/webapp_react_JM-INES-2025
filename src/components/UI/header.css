@@ -1,7 +1,7 @@
 .header {
     width: 100%; /* Ocupa toda la anchura */
     height: 100px; /* Altura fija para que no se mueva */
-    background-color: #f8f9fa; 
+    background-color: #1a1a1a; 
     border-bottom: 2px solid #ddd; 
     display: flex;
     justify-content: space-between; /* Izquierda, centro y derecha */
@@ -18,26 +18,37 @@
     margin-left: 20px;
 }
 
+.header-center {
+    display: flex;
+    justify-content: center; /* Centrar contenido horizontalmente */
+    align-items: center; /* Centrar contenido verticalmente */
+    flex: 1; /* Ocupa todo el espacio posible para mantenerse centrado */
+    text-align: center; /* Asegurar centrado del contenido */
+}
+
 .header-center img {
     display: block;
+    width: 350px;
     margin: 0 auto;
 }
 
 .nav-link {
     text-decoration: none;
-    color: #333;
+    color: #eff6ebfc;
     font-weight: bold;
     margin: 0 15px;
+    font-size: 20px;
 }
 
 .nav-link:hover {
-    color: #007bff; 
+    color: #d5f9ff; 
     transition: 0.3s;
 }
 
 .header-right img {
     cursor: pointer;
     transition: transform 0.3s ease;
+    margin-right: 20px;
 }
 
 .header-right img:hover {
