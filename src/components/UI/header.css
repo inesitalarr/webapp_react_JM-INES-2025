@@ -1,7 +1,7 @@
 .header {
     width: 100%; /* Ocupa toda la anchura */
     height: 100px; /* Altura fija para que no se mueva */
-    background-color: #1a1a1a; 
+    background-color: #000000; 
     border-bottom: 2px solid #ddd; 
     display: flex;
     justify-content: space-between; /* Izquierda, centro y derecha */
