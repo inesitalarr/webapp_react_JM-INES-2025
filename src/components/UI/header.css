@@ -20,10 +20,13 @@
 
 .header-center {
     display: flex;
-    justify-content: center; /* Centrar contenido horizontalmente */
-    align-items: center; /* Centrar contenido verticalmente */
-    flex: 1; /* Ocupa todo el espacio posible para mantenerse centrado */
-    text-align: center; /* Asegurar centrado del contenido */
+    justify-content: center;
+    align-items: center;
+    flex: 1; /* Aquí está el truco para que ocupe todo el espacio disponible */
+    text-align: center;
+    position: absolute; /* Le damos posición absoluta para centrarlo */
+    left: 50%; /* Lo llevamos al centro horizontal */
+    transform: translateX(-50%); /* Lo centramos exactamente */
 }
 
 .header-center img {
@@ -47,7 +50,6 @@
 .header-right img {
     cursor: pointer;
     transition: transform 0.3s ease;
-    margin-right: 20px;
 }
 
 .header-right img:hover {
