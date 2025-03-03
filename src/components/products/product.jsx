@@ -11,6 +11,21 @@ function Product(props) {
 
     const menosHandler = () => {
         console.log('Quitar ' + props.indice);
+
+        for (let i = 0; i < listaProductos.length; i++) {
+            if (listaProductos[i][0] === props.indice) {
+                if (listaProductos[i][1] == 1) {
+                    let aux = listaProductos;
+                    aux.splice(i, 1);
+                    setListaProductos(aux);
+                } else {
+                    let aux = listaProductos;
+                    aux[i][1] = listaProductos[i][1] + 1;
+                    setListaProductos(aux);
+                }
+            }
+        }
+        console.log(listaProductos);
     }
 
     const masHandler = () => {
