@@ -23,6 +23,7 @@ function Carrito() {
             ))}
           </ListGroup>
           <h4>Total: {total}€</h4>
+          <NavLink to="/checkout">REALIZAR PEDIDO</NavLink>
         </>
       )}
     </div>
