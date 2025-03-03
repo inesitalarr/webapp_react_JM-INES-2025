@@ -10,13 +10,15 @@ import Carrito from './pages/carrito.jsx'
 
 function App() {
 
+  const [listaProductos, setListaProductos] = useState([]);
+
 
   return (
     <>
     
 
       <GlobalContext.Provider value={{}}>
-        <CarritoContext.Provider value={{listaProductos:[]}}>
+        <CarritoContext.Provider value={{ listaProductos: listaProductos, setListaProductos: setListaProductos }}>
         <Header />
         <div style={{ height: 100 }}></div>
         <Routes>

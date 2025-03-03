@@ -1,18 +1,41 @@
 import './product.css';
-import { Image } from 'react-bootstrap';
+import { Image, Button } from 'react-bootstrap';
+import CarritoContext from '../../store/carritoContext';
+import { useContext } from 'react';
 
 function Product(props) {
-    //return (
-    //    <div className='producto'>
-    //        <div className='producto__descripcion'>
-    //            <Image src={`/imgs/products/${props.producto.imagen}`} roundedCircle width='100' />
-    //            <div className='producto__categoria'>{props.producto.categoría}</div>
-    //            <h2>{props.producto.nombre}</h2>
-    //            <div className='producto__precio'>{props.producto.precio}</div>
-    //            <div className='producto__stock'>{props.producto.stock}</div>
-    //        </div>
-    //    </div>
-    //);
+
+
+    const listaProductos = useContext(CarritoContext).listaProductos;
+    const setListaProductos = useContext(CarritoContext).setListaProductos;
+
+    const menosHandler = () => {
+        console.log('Quitar ' + props.indice);
+    }
+
+    const masHandler = () => {
+        console.log('Añadir ' + props.indice);
+
+        let existe = false;
+        for (let i = 0; i < listaProductos.length; i++) {
+            if (listaProductos[i][0] === props.indice) {
+                existe = true;
+
+                let aux = listaProductos;
+                aux[i][1] = listaProductos[i][1] + 1;
+
+                setListaProductos(aux);
+            }
+        }
+
+        if (!existe) {
+            let aux = listaProductos;
+            aux.push([props.indice, 1]);
+            setListaProductos(aux);
+        }
+        console.log(listaProductos);
+    }
+
     return (
         <tr>
             <td>
@@ -29,6 +52,12 @@ function Product(props) {
             </td>
             <td>
                 <div className='producto__stock'>{props.producto.stock}</div>
+            </td>
+            <td>
+                <Button variant='secondary' onClick={menosHandler}>-</Button>
+            </td>
+            <td>
+                <Button variant='secondary' onClick={masHandler}>+</Button>
             </td>
         </tr>
     );
