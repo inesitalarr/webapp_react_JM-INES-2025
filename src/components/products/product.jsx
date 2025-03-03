@@ -6,7 +6,8 @@ import { useContext } from 'react';
 function Product(props) {
 
 
-    //const listaProductos = useContext(CarritoContext).listaProductos;
+    const listaProductos = useContext(CarritoContext).listaProductos;
+    const setListaProductos = useContext(CarritoContext).setListaProductos;
 
     const menosHandler = () => {
         console.log('Quitar ' + props.indice);
@@ -14,6 +15,25 @@ function Product(props) {
 
     const masHandler = () => {
         console.log('Añadir ' + props.indice);
+
+        let existe = false;
+        for (let i = 0; i < listaProductos.length; i++) {
+            if (listaProductos[i][0] === props.indice) {
+                existe = true;
+
+                let aux = listaProductos;
+                aux[i][1] = listaProductos[i][1] + 1;
+
+                setListaProductos(aux);
+            }
+        }
+
+        if (!existe) {
+            let aux = listaProductos;
+            aux.push([props.indice, 1]);
+            setListaProductos(aux);
+        }
+        console.log(listaProductos);
     }
 
     return (
