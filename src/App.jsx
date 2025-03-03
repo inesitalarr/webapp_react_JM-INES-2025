@@ -22,6 +22,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Products />}></Route>
           <Route path='/carrito' element={<Carrito />} />
+          
         </Routes>
         <Footer />
         </CarritoContext.Provider>
