@@ -43,7 +43,7 @@ function Products() {
         </thead>
         <tbody>
           {productArray.map((elemento) => {
-            return <Product key={elemento.id} producto={elemento} />
+            return <Product key={elemento.id} indice={elemento.id} producto={elemento} />
           })}
         </tbody>
       </Table>;
