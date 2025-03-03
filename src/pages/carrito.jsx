@@ -1,11 +1,13 @@
-import React, { useContext } from 'react';
-import  CarritoContext  from '../store/carritoContext';
-import { ListGroup, Button } from 'react-bootstrap';
+import React, { useState, useEffect,useContext } from 'react';
+import axios from 'axios';
+import Product from '../components/products/product';
+import { Alert, Table } from 'react-bootstrap';
+import CarritoContext from '../store/carritoContext';
 
 function Carrito() {
-  const { cartItems, removeFromCart } = useContext(CarritoContext);
+  const cartItems= useContext(CarritoContext).listaProductos;
 
-  const total = cartItems.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
+
 
   return (
     <div>
@@ -14,15 +16,7 @@ function Carrito() {
         <p>El carrito está vacío</p>
       ) : (
         <>
-          <ListGroup>
-            {cartItems.map((item) => (
-              <ListGroup.Item key={item.id}>
-                {item.nombre} - {item.cantidad} x {item.precio}€
-                <Button variant="danger" size="sm" onClick={() => removeFromCart(item.id)}>Eliminar</Button>
-              </ListGroup.Item>
-            ))}
-          </ListGroup>
-          <h4>Total: {total}€</h4>
+       
           <NavLink to="/confirmacion">REALIZAR PEDIDO</NavLink>
         </>
       )}
