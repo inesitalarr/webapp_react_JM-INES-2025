@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import CarritoContext from './store/carritoContext';
 import GlobalContext from './store/globalContext'
 import { Routes, Route } from 'react-router'
 import Products from './pages/products.jsx'
