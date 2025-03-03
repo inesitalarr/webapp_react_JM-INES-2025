@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Product from '../components/products/product';
-import { Alert } from 'react-bootstrap';
+import { Alert, Table } from 'react-bootstrap';
 
 
 function Products() {
@@ -30,12 +30,23 @@ function Products() {
   let contenido = <Alert>Non ci sono produtti</Alert>;
 
   if (productArray.length > 0) {
-      contenido =
-          <div>
-              {productArray.map((elemento) => {
-                  return <Product key={elemento.id} producto={elemento} />
-              })}
-          </div>;
+    contenido =
+      <Table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Categoría</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Stock</th>
+          </tr>
+        </thead>
+        <tbody>
+          {productArray.map((elemento) => {
+            return <Product key={elemento.id} producto={elemento} />
+          })}
+        </tbody>
+      </Table>;
   }
 
   return (
