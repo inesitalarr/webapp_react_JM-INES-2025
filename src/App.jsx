@@ -16,6 +16,7 @@ function App() {
     
       <GlobalContext.Provider value={{}}>
         <Header />
+        <div style={{ height: 100 }}></div>
         <Routes>
           <Route path='/' element={<Products />}></Route>
           <Route path='/carrito' element={<Carrito />} />

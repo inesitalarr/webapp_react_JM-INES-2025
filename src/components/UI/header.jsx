@@ -25,7 +25,9 @@ function Header() {
                     </Nav.Item>
                 </Nav>
             </div>
+            
         </header>
+       
     );
 }
 
