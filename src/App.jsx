@@ -14,7 +14,9 @@ function App() {
   return (
     <>
     
+
       <GlobalContext.Provider value={{}}>
+        <CarritoContext.Provider value={{listaProductos:[]}}>
         <Header />
         <div style={{ height: 100 }}></div>
         <Routes>
@@ -22,6 +24,7 @@ function App() {
           <Route path='/carrito' element={<Carrito />} />
         </Routes>
         <Footer />
+        </CarritoContext.Provider>
       </GlobalContext.Provider>
     </>
   )
