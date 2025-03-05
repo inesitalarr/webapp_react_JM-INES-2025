@@ -9,6 +9,7 @@ import Footer from './components/UI/footer.jsx'
 import Carrito from './pages/carrito.jsx'
 import Login from './pages/login.jsx'
 import Confirmation from './pages/confirmation.jsx'
+import Agradecimiento from './pages/agradecimiento.jsx'
 
 function App() {
 
@@ -75,6 +76,7 @@ function App() {
             <Route path='/carrito' element={<Carrito />} />
             <Route path='/login' element={<Login />} />
             <Route path='/confirmation' element={<Confirmation />} />
+            <Route path='/agradecimiento' element={<Agradecimiento />} />
           </Routes>
           <Footer />
         </CarritoContext.Provider>
