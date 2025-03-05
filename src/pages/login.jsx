@@ -5,35 +5,32 @@ import axios from 'axios';
 
 function Login() {
 
-    const setLogin = useContext(GlobalContext).setLogin;
-    const setUsername = useContext(GlobalContext).setUsername;
-
     const [emailTemp, setEmailTemp] = useState('');
     const [passwordTemp, setPasswordTemp] = useState('');
+
+    const loginHandler = useContext(GlobalContext).loginHandler;
 
     const submitHandler = (event) => {
         event.preventDefault();
         console.log(emailTemp);
         console.log(passwordTemp);
-
-        const authDAta = {
-            email: emailTemp,
-            password: passwordTemp,
-            returnSecureToken: true
+    
+        const authData = {
+          email: emailTemp,
+          password: passwordTemp,
+          returnSecureToken: true
         }
-        axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDw-qrJJtrzAnjQY1eB6tUbruo3TanpKRc', authDAta)
-        .then((response) => {
+        axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDw-qrJJtrzAnjQY1eB6tUbruo3TanpKRc', authData)
+          .then((response) => {
             alert('¡Login correcto!');
             console.log(response);
-            setLogin(true);
-            setUsername(response.data.email);
-        })
-        .catch((error) => {
+            loginHandler(response.data.email);
+          })
+          .catch((error) => {
             alert('¡Login incorrecto!');
             console.log(error);
-        })
-    }
-
+          })
+      }
 
 
     return (

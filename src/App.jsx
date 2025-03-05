@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import CarritoContext from './store/carritoContext';
+import CarritoContext from './store/carritoContext'
 import GlobalContext from './store/globalContext'
 import { Routes, Route } from 'react-router'
 import Products from './pages/products.jsx'
@@ -19,60 +19,62 @@ function App() {
     console.log('Quitar ' + e.target.value);
 
     for (let i = 0; i < listaProductos.length; i++) {
-        if (listaProductos[i][0] === e.target.value) {
-            if (listaProductos[i][1] == 1) {
-                let aux = listaProductos.slice();
-                aux.splice(i, 1);
-                setListaProductos(aux);
-            } else {
-                let aux = listaProductos.slice();
-                aux[i][1] = listaProductos[i][1] - 1;
-                setListaProductos(aux);
-            }
+      if (listaProductos[i][0] === e.target.value) {
+        if (listaProductos[i][1] == 1) {
+          let aux = listaProductos.slice();
+          aux.splice(i, 1);
+          setListaProductos(aux);
+        } else {
+          let aux = listaProductos.slice();
+          aux[i][1] = listaProductos[i][1] - 1;
+          setListaProductos(aux);
         }
+      }
     }
     console.log(listaProductos);
-}
+  }
 
-const masHandler = (e) => {
+  const masHandler = (e) => {
     console.log('Añadir ' + e.target.value);
 
     let existe = false;
     for (let i = 0; i < listaProductos.length; i++) {
-        if (listaProductos[i][0] === e.target.value) {
-            existe = true;
+      if (listaProductos[i][0] === e.target.value) {
+        existe = true;
 
-            let aux = listaProductos.slice();
-            aux[i][1] = listaProductos[i][1] + 1;
+        let aux = listaProductos.slice();
+        aux[i][1] = listaProductos[i][1] + 1;
 
-            setListaProductos(aux);
-        }
+        setListaProductos(aux);
+      }
     }
 
     if (!existe) {
-        let aux = listaProductos.slice();
-        aux.push([e.target.value, 1]);
-        setListaProductos(aux);
+      let aux = listaProductos.slice();
+      aux.push([e.target.value, 1]);
+      setListaProductos(aux);
     }
     console.log(listaProductos);
-}
+  }
+
+  const loginHandler = (email) => {
+    setLogin(true);
+    setUsername(email);
+  }
 
 
   return (
     <>
-    
-
-      <GlobalContext.Provider value={{ login: login, setLogin: setLogin, username: username, setUsername: setUsername }}>
+      <GlobalContext.Provider value={{ login: login, loginHandler: loginHandler }}>
         <CarritoContext.Provider value={{ listaProductos: listaProductos, setListaProductos: setListaProductos, menosHandler: menosHandler, masHandler: masHandler }}>
-        <Header />
-        <div style={{ height: 100 }}></div>
-        <Routes>
-          <Route path='/' element={<Products />}></Route>
-          <Route path='/carrito' element={<Carrito />} />
-          <Route path='/login' element={<Login />} />
-          
-        </Routes>
-        <Footer />
+          <Header />
+          <div style={{ height: 100 }}></div>
+          <Routes>
+            <Route path='/' element={<Products />} />
+            <Route path='/carrito' element={<Carrito />} />
+            <Route path='/login' element={<Login />} />
+          </Routes>
+          <Footer />
         </CarritoContext.Provider>
       </GlobalContext.Provider>
     </>
