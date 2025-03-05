@@ -9,6 +9,8 @@ import { Link } from 'react-router'; // Cuidado, usa 'react-router-dom' no 'reac
 function Carrito() {
   const cartItems = useContext(CarritoContext).listaProductos;
   const [productArray, setProductArray] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+
 
   useEffect(() => {
     axios.get('https://webapp-react-jm-ines-2025-default-rtdb.europe-west1.firebasedatabase.app/productos.json')
@@ -27,6 +29,10 @@ function Carrito() {
           }
         }
         setProductArray(arrayProductos);
+
+          // Calcular el precio total
+          const total = arrayProductos.reduce((acc, producto) => acc + (producto.precio * producto.cantidad), 0);
+          setTotalPrice(total);
       })
       .catch((error) => { console.log('¡Ha ocurrido un error!') })
       console.log("Estoy actualizando el carrito");
@@ -57,6 +63,7 @@ function Carrito() {
               })}
             </tbody>
           </Table>
+          <h2>Total: {totalPrice.toFixed(2)} €</h2>
           <Button variant='dark'><Link to="/confirmacion">REALIZAR PEDIDO</Link></Button>
         </>
       )}
