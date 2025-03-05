@@ -6,50 +6,10 @@ import { useContext } from 'react';
 function ItemCarrito(props) {
 
 
-    const listaProductos = useContext(CarritoContext).listaProductos;
-    const setListaProductos = useContext(CarritoContext).setListaProductos;
+    const menosHandler = useContext(CarritoContext).menosHandler;
+    const masHandler = useContext(CarritoContext).masHandler;
 
-    const menosHandler = () => {
-        console.log('Quitar ' + props.indice);
-
-        for (let i = 0; i < listaProductos.length; i++) {
-            if (listaProductos[i][0] === props.indice) {
-                if (listaProductos[i][1] == 1) {
-                    let aux = listaProductos;
-                    aux.splice(i, 1);
-                    setListaProductos(aux);
-                } else {
-                    let aux = listaProductos;
-                    aux[i][1] = listaProductos[i][1] - 1;
-                    setListaProductos(aux);
-                }
-            }
-        }
-        console.log(listaProductos);
-    }
-
-    const masHandler = () => {
-        console.log('Añadir ' + props.indice);
-
-        let existe = false;
-        for (let i = 0; i < listaProductos.length; i++) {
-            if (listaProductos[i][0] === props.indice) {
-                existe = true;
-
-                let aux = listaProductos;
-                aux[i][1] = listaProductos[i][1] + 1;
-
-                setListaProductos(aux);
-            }
-        }
-
-        if (!existe) {
-            let aux = listaProductos;
-            aux.push([props.indice, 1]);
-            setListaProductos(aux);
-        }
-        console.log(listaProductos);
-    }
+    
 
     return (
         <tr>
@@ -69,10 +29,10 @@ function ItemCarrito(props) {
                 <div className='producto__cantidad'>{props.producto.cantidad}</div>
             </td>
             <td>
-                <Button variant='secondary' onClick={menosHandler}>-</Button>
+                <Button variant='secondary' onClick={menosHandler} value={props.indice}>-</Button>
             </td>
             <td>
-                <Button variant='secondary' onClick={masHandler}>+</Button>
+                <Button variant='secondary' onClick={masHandler} value={props.indice}>+</Button>
             </td>
         </tr>
     );

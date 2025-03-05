@@ -36,7 +36,7 @@ function Carrito() {
       })
       .catch((error) => { console.log('¡Ha ocurrido un error!') })
       console.log("Estoy actualizando el carrito");
-  }, );
+  }, [cartItems]);
 
 
 

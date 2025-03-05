@@ -3,7 +3,9 @@ import React from 'react';
 
 const CarritoContext = React.createContext({
     listaProductos: [],
-    setListaProductos: () => {}
+    setListaProductos: () => {},
+    menosHandler: () => {},
+    masHandler: () => {}
 });
 
 
