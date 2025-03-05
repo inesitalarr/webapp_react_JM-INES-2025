@@ -5,9 +5,7 @@ import axios from 'axios';
 
 function Login() {
 
-    const login = useContext(GlobalContext).login;
     const setLogin = useContext(GlobalContext).setLogin;
-    const username = useContext(GlobalContext).username;
     const setUsername = useContext(GlobalContext).setUsername;
 
     const [emailTemp, setEmailTemp] = useState('');
