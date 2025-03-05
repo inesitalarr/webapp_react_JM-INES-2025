@@ -1,8 +1,20 @@
 import './header.css';
 import { Nav } from 'react-bootstrap';
 import { Link } from 'react-router'; // Cuidado, usa 'react-router-dom' no 'react-router'
+import { useContext } from 'react';
+import GlobalContext from '../../store/globalContext';
 
 function Header() {
+
+    const login = useContext(GlobalContext).login;
+
+    let parteLogin;
+    if (login) {
+        parteLogin = <img src='/imgs/icons/logged_in.png' alt='Login' width='70' />;
+    } else {
+        parteLogin = <img src='/imgs/icons/logged_out.png' alt='Login' width='70' />;
+    }
+
     return (
         <header className='header'>
             <div className='header-left'>
@@ -16,11 +28,16 @@ function Header() {
             <div className='header-right'>
                 <Nav>
                     <Nav.Item>
-                        <Link to='/' className='nav-link' style={{ color: '#ADD8E6', textDecoration: 'none', fontWeight: 'bold', fontSize: 20, margin: 10}}>Página principal    |</Link>
+                        <Link to='/' className='nav-link' style={{ color: '#ADD8E6', textDecoration: 'none', fontWeight: 'bold', fontSize: 20, margin: 10 }}>Página principal    |</Link>
                     </Nav.Item>
                     <Nav.Item>
                         <Link to='/carrito'>
                             <img src='/imgs/icons/carrito.png' alt='Carrito' width='70' />
+                        </Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Link to='/login'>
+                            {parteLogin}
                         </Link>
                     </Nav.Item>
                 </Nav>
