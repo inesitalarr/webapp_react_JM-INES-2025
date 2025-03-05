@@ -35,7 +35,6 @@ function Carrito() {
           setTotalPrice(total);
       })
       .catch((error) => { console.log('¡Ha ocurrido un error!') })
-      console.log("Estoy actualizando el carrito");
   }, );
 
 
@@ -64,7 +63,7 @@ function Carrito() {
             </tbody>
           </Table>
           <h2>Total: {totalPrice.toFixed(2)} €</h2>
-          <Button variant='dark'><Link to="/confirmacion">REALIZAR PEDIDO</Link></Button>
+          <Button variant='dark'><Link to="/confirmation">REALIZAR PEDIDO</Link></Button>
         </>
       )}
     </div>

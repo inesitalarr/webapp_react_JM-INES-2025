@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import ItemConfirmation from '../components/products/itemConfirmation';
 import { Alert, Table, Nav, Button } from 'react-bootstrap';
-import { Link } from 'react-router'; // Cuidado, usa 'react-router-dom' no 'react-router'
-
+import CarritoContext from '../store/carritoContext';
+import { Link } from 'react-router'; // Cambiado a 'react-router-dom'
 
 function Confirmation() {
-
+  const { listaProductos, setListaProductos } = useContext(CarritoContext);
+  const cartItems = listaProductos;
+  const [productArray, setProductArray] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     axios.get('https://webapp-react-jm-ines-2025-default-rtdb.europe-west1.firebasedatabase.app/productos.json')
@@ -18,22 +22,23 @@ function Confirmation() {
               nombre: response.data[key].nombre,
               precio: response.data[key].precio,
               cantidad: cartItems.find((item) => item[0] === key)[1],
-              categoría: response.data[key].categoría,
               imagen: response.data[key].imagen
             })
           }
         }
         setProductArray(arrayProductos);
 
-          // Calcular el precio total
-          const total = arrayProductos.reduce((acc, producto) => acc + (producto.precio * producto.cantidad), 0);
-          setTotalPrice(total);
+        // Calcular el precio total
+        const total = arrayProductos.reduce((acc, producto) => acc + (producto.precio * producto.cantidad), 0);
+        setTotalPrice(total);
       })
       .catch((error) => { console.log('¡Ha ocurrido un error!') })
-      console.log("Estoy actualizando el carrito");
-  }, );
+  }, [cartItems]);
 
-
+  const handleRemoveItem = (id) => {
+    const updatedCartItems = cartItems.filter(item => item[0] !== id);
+    setListaProductos(updatedCartItems);
+  };
 
   return (
     <div>
@@ -46,26 +51,25 @@ function Confirmation() {
             <thead>
               <tr>
                 <th></th>
-                <th>Categoría</th>
                 <th>Nombre</th>
                 <th>Precio</th>
                 <th>Cantidad</th>
+                <th>Eliminar</th>
               </tr>
             </thead>
             <tbody>
               {productArray.map((elemento) => {
-                return <ItemCarrito key={elemento.id} indice={elemento.id} producto={elemento} />
+                return (<ItemConfirmation key={elemento.id} indice={elemento.id} producto={elemento} deteleItem = {handleRemoveItem}/>
+                );
               })}
             </tbody>
           </Table>
           <h2>Total: {totalPrice.toFixed(2)} €</h2>
-          <Button variant='dark'><Link to="/confirmacion">REALIZAR PEDIDO</Link></Button>
+          <Button variant='dark'><Link to="/confirmacion">CONTINUAR CON EL PAGO</Link></Button>
         </>
       )}
     </div>
   );
-
-
 }
 
 export default Confirmation;
