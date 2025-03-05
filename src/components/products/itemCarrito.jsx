@@ -1,9 +1,9 @@
-import './product.css';
+import './itemCarrito.css';
 import { Image, Button } from 'react-bootstrap';
 import CarritoContext from '../../store/carritoContext';
 import { useContext } from 'react';
 
-function Product(props) {
+function ItemCarrito(props) {
 
 
     const listaProductos = useContext(CarritoContext).listaProductos;
@@ -66,7 +66,7 @@ function Product(props) {
                 <div className='producto__precio'>{props.producto.precio}</div>
             </td>
             <td>
-                <div className='producto__stock'>{props.producto.stock}</div>
+                <div className='producto__cantidad'>{props.producto.cantidad}</div>
             </td>
             <td>
                 <Button variant='secondary' onClick={menosHandler}>-</Button>
@@ -78,4 +78,4 @@ function Product(props) {
     );
 }
 
-export default Product;
+export default ItemCarrito;

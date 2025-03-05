@@ -39,6 +39,8 @@ function Products() {
             <th>Nombre</th>
             <th>Precio</th>
             <th>Stock</th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
