@@ -10,6 +10,7 @@ import Carrito from './pages/carrito.jsx'
 import Login from './pages/login.jsx'
 import Formulario from './pages/formulario.jsx'
 import Confirmation from './pages/confirmation.jsx'
+import Agradecimiento from './pages/agradecimiento.jsx'
 
 function App() {
 
@@ -77,6 +78,7 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/formulario' element={<Formulario />} />
             <Route path='/confirmation' element={<Confirmation />} />
+            <Route path='/agradecimiento' element={<Agradecimiento />} />
             <Route path='*' element={<h1>404 - Not found</h1>} />
           </Routes>
           <Footer />
