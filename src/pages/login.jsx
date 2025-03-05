@@ -1,6 +1,7 @@
 import { Form, Col, Row, Container, Button } from 'react-bootstrap';
 import { useState, useContext } from 'react';
 import GlobalContext from '../store/globalContext';
+import axios from 'axios';
 
 function Login() {
 
@@ -9,13 +10,30 @@ function Login() {
     const username = useContext(GlobalContext).username;
     const setUsername = useContext(GlobalContext).setUsername;
 
-    const [usernameTemp, setUsernameTemp] = useState('');
+    const [emailTemp, setEmailTemp] = useState('');
     const [passwordTemp, setPasswordTemp] = useState('');
 
     const submitHandler = (event) => {
         event.preventDefault();
-        console.log(usernameTemp);
+        console.log(emailTemp);
         console.log(passwordTemp);
+
+        const authDAta = {
+            email: emailTemp,
+            password: passwordTemp,
+            returnSecureToken: true
+        }
+        axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDw-qrJJtrzAnjQY1eB6tUbruo3TanpKRc', authDAta)
+        .then((response) => {
+            alert('¡Login correcto!');
+            console.log(response);
+            setLogin(true);
+            setUsername(response.data.email);
+        })
+        .catch((error) => {
+            alert('¡Login incorrecto!');
+            console.log(error);
+        })
     }
 
 
@@ -26,8 +44,8 @@ function Login() {
                 <Container>
                     <Row>
                         <Col>
-                            <Form.Label>Nombre de usuario:</Form.Label>
-                            <Form.Control type='text' onChange={(event) => setUsernameTemp(event.target.value)} value={usernameTemp} />
+                            <Form.Label>Correo electrónico:</Form.Label>
+                            <Form.Control type='text' onChange={(event) => setEmailTemp(event.target.value)} value={emailTemp} />
                         </Col>
                         <Col>
                             <Form.Label>Contraseña:</Form.Label>
