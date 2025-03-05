@@ -65,7 +65,7 @@ function Confirmation() {
             </tbody>
           </Table>
           <h2>Total: {totalPrice.toFixed(2)} €</h2>
-          <Button variant='dark'><Link to="/confirmacion">CONTINUAR CON EL PAGO</Link></Button>
+          <Button variant='dark'><Link to="/formulario">CONTINUAR CON EL PAGO</Link></Button>
         </>
       )}
     </div>
