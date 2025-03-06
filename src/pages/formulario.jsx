@@ -52,10 +52,10 @@ function Formulario() {
             <Form.Label>Caducidad (mm/aa):</Form.Label>
             <Row>
                 <Col>
-                    <Form.Control type='number' onChange={(event) => setCaducidadMesTemp(event.target.value)} value={caducidadMesTemp} />
+                    <Form.Control type='number' onChange={(event) => setCaducidadMesTemp(event.target.value)} value={caducidadMesTemp} placeholder="mm" />
                 </Col>
                 <Col>
-                    <Form.Control type='number' onChange={(event) => setCaducidadAnioTemp(event.target.value)} value={caducidadAnioTemp} />
+                    <Form.Control type='number' onChange={(event) => setCaducidadAnioTemp(event.target.value)} value={caducidadAnioTemp} placeholder="aa" />
                 </Col>
             </Row>
         </Col>
