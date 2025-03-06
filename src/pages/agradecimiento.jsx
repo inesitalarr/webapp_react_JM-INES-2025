@@ -12,7 +12,7 @@ function Agradecimiento() {
           <p className="lead">Tu pedido ha sido realizado con éxito.</p>
           <div className="my-4">
             <img
-              src="/public/imgs/icons/final.gif"
+              src="/imgs/icons/final.gif"
               alt="Gracias"
               className="img-fluid rounded-circle"
               style={{ animation: 'bounce 2s infinite',width: '200px', height: '200px' }}

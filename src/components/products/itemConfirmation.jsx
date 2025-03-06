@@ -2,7 +2,7 @@ import './itemConfirmation.css';
 import { Image, Button } from 'react-bootstrap';
 import CarritoContext from '../../store/carritoContext';
 import { useContext } from 'react';
-import deleteIcon from '/public/imgs/icons/papelera.png'; // Asegúrate de que la ruta sea correcta
+import deleteIcon from '/imgs/icons/papelera.png'; // Asegúrate de que la ruta sea correcta
 
 
 function ItemConfirmation(props) {
