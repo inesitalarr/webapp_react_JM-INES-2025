@@ -14,23 +14,23 @@ function Login() {
         event.preventDefault();
         console.log(emailTemp);
         console.log(passwordTemp);
-    
+
         const authData = {
-          email: emailTemp,
-          password: passwordTemp,
-          returnSecureToken: true
+            email: emailTemp,
+            password: passwordTemp,
+            returnSecureToken: true
         }
         axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDw-qrJJtrzAnjQY1eB6tUbruo3TanpKRc', authData)
-          .then((response) => {
-            alert('¡Login correcto!');
-            console.log(response);
-            loginHandler(response.data.email);
-          })
-          .catch((error) => {
-            alert('¡Login incorrecto!');
-            console.log(error);
-          })
-      }
+            .then((response) => {
+                alert('¡Login correcto!');
+                console.log(response);
+                loginHandler(response.data.email);
+            })
+            .catch((error) => {
+                alert('¡Login incorrecto!');
+                console.log(error);
+            })
+    }
 
 
     return (
@@ -38,15 +38,19 @@ function Login() {
             <Form onSubmit={submitHandler}>
                 <Container>
                     <Row>
-                        <Col>
+                        <Col className='p-2'>
                             <Form.Label>Correo electrónico:</Form.Label>
                             <Form.Control type='text' onChange={(event) => setEmailTemp(event.target.value)} value={emailTemp} />
                         </Col>
-                        <Col>
+                    </Row>
+                    <Row>
+                        <Col className='p-2'>
                             <Form.Label>Contraseña:</Form.Label>
                             <Form.Control type='password' onChange={(event) => setPasswordTemp(event.target.value)} value={passwordTemp} />
                         </Col>
-                        <Col>
+                    </Row>
+                    <Row>
+                        <Col className='p-2'>
                             <Button type='submit' variant='primary'>LOGIN</Button>
                         </Col>
                     </Row>

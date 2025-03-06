@@ -8,6 +8,7 @@ import Header from './components/UI/header.jsx'
 import Footer from './components/UI/footer.jsx'
 import Carrito from './pages/carrito.jsx'
 import Login from './pages/login.jsx'
+import Formulario from './pages/formulario.jsx'
 import Confirmation from './pages/confirmation.jsx'
 
 function App() {
@@ -74,7 +75,9 @@ function App() {
             <Route path='/' element={<Products />} />
             <Route path='/carrito' element={<Carrito />} />
             <Route path='/login' element={<Login />} />
+            <Route path='/formulario' element={<Formulario />} />
             <Route path='/confirmation' element={<Confirmation />} />
+            <Route path='*' element={<h1>404 - Not found</h1>} />
           </Routes>
           <Footer />
         </CarritoContext.Provider>
