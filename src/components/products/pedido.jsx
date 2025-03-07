@@ -1,9 +1,8 @@
 import './pedido.css';
-import { Image, Button, Accordion } from 'react-bootstrap';
+import { Image, Button, Accordion, Card, Table } from 'react-bootstrap'; // Asegúrate de importar Card y Table
 import { useContext } from 'react';
 import PedidosContext from '../../store/pedidosContext';
-import ItemPedido from '../../store/pedidosContext'; // Asegúrate de que la ruta sea correcta
-
+import ItemPedido from './itemPedido';
 
 function Pedido(props) {
 
@@ -13,17 +12,20 @@ function Pedido(props) {
     const opcionPago = props.opcionPago;
     const tarjeta = props.tarjeta;
     const listaProductos = props.listaProductos;
-    const idPedido = props.idPedido;
+    const idPedido = props.id;
     const borrarPedido =  useContext(PedidosContext).borrarPedido; //se le introduce a la funcion la id del pedido
 
 
     return (
         <Accordion>
           <Card>
-            <Accordion.Toggle as={Card.Header} eventKey="0">
-              Pedido ID: {idPedido} - Fecha: {fecha}
-            </Accordion.Toggle>
-            <Accordion.Collapse eventKey="0">
+          <Accordion>
+            Pedido ID: {idPedido} - Fecha: {fecha}
+            <Button variant="link" onClick={borrarPedido} style={{ float: 'right' }}>
+                <Image src="/public/imgs/icons/papelera.png" width="40" />
+            </Button>
+            </Accordion>
+            <Accordion>
               <Card.Body>
                 <Table striped bordered hover>
                   <thead>
@@ -36,16 +38,16 @@ function Pedido(props) {
                     </tr>
                   </thead>
                   <tbody>
-                    {listaProductos.map((index, producto) => (
-                      <ItemPedido key={index} producto={producto} />
+                    {listaProductos.map((producto) => (
+                      <ItemPedido producto={producto} />
                     ))}
                   </tbody>
                 </Table>
                 <div className="total">
-                  <h5>Total: {total} €</h5>
+                  <h5>Total pedido: {total} €</h5>
                 </div>
               </Card.Body>
-            </Accordion.Collapse>
+            </Accordion>
           </Card>
         </Accordion>
       );
