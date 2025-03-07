@@ -11,8 +11,11 @@ function Header(props) {
     let parteLogin;
     if (login) {
         parteLogin = <img src='/imgs/icons/logged_in.png' alt='Login' width='70' />;
+        parteLink = "/login";
     } else {
         parteLogin = <img src='/imgs/icons/logged_out.png' alt='Login' width='70' />;
+        parteLink = "/pedidos"
+
     }
 
     return (
@@ -38,7 +41,7 @@ function Header(props) {
                         </Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Link to='/login'>
+                        <Link to={parteLink}>
                             {parteLogin}
                         </Link>
                     </Nav.Item>
