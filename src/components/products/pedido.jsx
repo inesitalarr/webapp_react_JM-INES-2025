@@ -15,6 +15,7 @@ function Pedido(props) {
     const idPedido = props.idPedido;
     const borrarPedido =  useContext(PedidosContext).borrarPedido; //se le introduce a la funcion la id del pedido
 
+    
 
 
     return (
