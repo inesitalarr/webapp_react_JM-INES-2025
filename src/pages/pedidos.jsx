@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import PedidosContext from '../store/pedidosContext';
 import { Accordion } from 'react-bootstrap';
-import Pedido from '../components/products/pedido';
+import Pedido from '../components/products/pedido.jsx';
 import GlobalContext from '../store/globalContext';
 
 function Pedidos() {

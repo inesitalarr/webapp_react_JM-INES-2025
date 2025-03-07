@@ -2,7 +2,7 @@ import './pedido.css';
 import { Image, Button, Accordion } from 'react-bootstrap';
 import { useContext } from 'react';
 import PedidosContext from '../../store/pedidosContext';
-import ItemPedido from '../../products/pedidosContext'; // Asegúrate de que la ruta sea correcta
+import ItemPedido from '../../store/pedidosContext'; // Asegúrate de que la ruta sea correcta
 
 
 function Pedido(props) {
@@ -36,7 +36,7 @@ function Pedido(props) {
                     </tr>
                   </thead>
                   <tbody>
-                    {listaProductos.map((producto, index) => (
+                    {listaProductos.map((index, producto) => (
                       <ItemPedido key={index} producto={producto} />
                     ))}
                   </tbody>
