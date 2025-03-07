@@ -16,7 +16,7 @@ function App() {
 
   const [listaProductos, setListaProductos] = useState([]);
   const [login, setLogin] = useState(false);
-  const [username, setUsername] = useState('');
+  const [idToken, setIdToken] = useState('');
   const [isCartHighlighted, setIsCartHighlighted] = useState(false);
   const [isCartHighlightedRed, setIsCartHighlightedRed] = useState(false);
 
@@ -79,15 +79,15 @@ function App() {
     console.log(listaProductos);
   }
 
-  const loginHandler = (email) => {
+  const loginHandler = (idToken) => {
     setLogin(true);
-    setUsername(email);
+    setIdToken(idToken);
   }
 
 
   return (
     <>
-      <GlobalContext.Provider value={{ login: login, loginHandler: loginHandler, username: username }}>
+      <GlobalContext.Provider value={{ login: login, loginHandler: loginHandler, idToken: idToken }}>
         <CarritoContext.Provider value={{ listaProductos: listaProductos, setListaProductos: setListaProductos, menosHandler: menosHandler, masHandler: masHandler }}>
         <Header isCartHighlighted={isCartHighlighted} isCartHighlightedRed={isCartHighlightedRed} />
         <div style={{ height: 100 }}></div>
