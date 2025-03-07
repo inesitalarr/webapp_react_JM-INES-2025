@@ -53,9 +53,10 @@ function Pedidos() {
                 <p>No hay pedidos</p>
             ) : (
                 <Accordion>
-                    {pedidos.map((pedido) => (
-                        <Pedido key={pedido.id} id={pedido.id} fecha={pedido.fecha} total={pedido.total} listaProductos={pedido.listaProductos} opcionPago={pedido.opcionPago} tarjeta={pedido.tarjeta} />
-                    ))}
+                    {pedidos.map((pedido) => {
+                        return(<Pedido key={pedido.id} id={pedido.id} fecha={pedido.fecha} total={pedido.total} listaProductos={pedido.listaProductos} opcionPago={pedido.opcionPago} tarjeta={pedido.tarjeta} />
+                        );
+                    })}
                 </Accordion>
             )}
         </PedidosContext.Provider>
