@@ -1,7 +1,9 @@
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import { useState, useContext, useEffect } from "react";
 import GlobalContext from "../store/globalContext";
+import CarritoContext from "../store/carritoContext";
 import axios from "axios";
+import { useNavigate } from "react-router";
 
 function Formulario() {
 
@@ -22,7 +24,12 @@ function Formulario() {
     const [cvvTemp, setCvvTemp] = useState(0);
 
     const login = useContext(GlobalContext).login;
+    const loginHandler = useContext(GlobalContext).loginHandler;
     const idToken = useContext(GlobalContext).idToken;
+    const listaProductos = useContext(CarritoContext).listaProductos;
+
+    const navega = useNavigate();
+
     useEffect(() => {
         if (login) {
             const authData = {
@@ -34,7 +41,7 @@ function Formulario() {
                 })
                 .catch((error) => {
                     alert('¡Login incorrecto!');
-                console.log(error);
+                    console.log(error);
                 })
         }
     }, [login]);
@@ -55,6 +62,75 @@ function Formulario() {
         console.log(caducidadMesTemp);
         console.log(caducidadAnioTemp);
         console.log(cvvTemp);
+        console.log(listaProductos);
+
+
+        if (login) {
+            const pedidoData = {
+                idToken: idToken,
+                nombre: nombreTemp,
+                apellidos: apellidosTemp,
+                telefono: telefonoTemp,
+                direccion: direccionTemp,
+                codigoPostal: codigoPostalTemp,
+                ciudad: ciudadTemp,
+                provincia: provinciaTemp,
+                opcionPago: opcionPagoTemp,
+                tarjeta: tarjetaTemp,
+                caducidadMes: caducidadMesTemp,
+                caducidadAnio: caducidadAnioTemp,
+                cvv: cvvTemp,
+                listaProductos: listaProductos
+            }
+            axios.post('https://webapp-react-jm-ines-2025-default-rtdb.europe-west1.firebasedatabase.app/pedidos.json?auth=' + idToken, pedidoData)
+                .then((response) => {
+                    alert('Pedido añadido correctamente');
+                    setTimeout(() => { navega('/agradecimiento') }, 500);
+                })
+                .catch((error) => {
+                    console.log('¡Se ha producido un error!');
+                })
+        } else {
+            const authData = {
+                email: emailTemp,
+                password: passwordTemp,
+                returnSecureToken: true
+            }
+            axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDw-qrJJtrzAnjQY1eB6tUbruo3TanpKRc', authData)
+                .then((response) => {
+                    console.log(response);
+                    loginHandler(response.data.idToken);
+
+                    const pedidoData = {
+                        idToken: response.data.idToken,
+                        nombre: nombreTemp,
+                        apellidos: apellidosTemp,
+                        telefono: telefonoTemp,
+                        direccion: direccionTemp,
+                        codigoPostal: codigoPostalTemp,
+                        ciudad: ciudadTemp,
+                        provincia: provinciaTemp,
+                        opcionPago: opcionPagoTemp,
+                        tarjeta: tarjetaTemp,
+                        caducidadMes: caducidadMesTemp,
+                        caducidadAnio: caducidadAnioTemp,
+                        cvv: cvvTemp,
+                        listaProductos: listaProductos
+                    }
+                    axios.post('https://webapp-react-jm-ines-2025-default-rtdb.europe-west1.firebasedatabase.app/pedidos.json?auth=' + response.data.idToken, pedidoData)
+                        .then((response) => {
+                            alert('Pedido añadido correctamente');
+                            setTimeout(() => { navega('/agradecimiento') }, 500);
+                        })
+                        .catch((error) => {
+                            console.log('¡Se ha producido un error!');
+                        })
+                })
+                .catch((error) => {
+                    alert('¡Login incorrecto!');
+                    console.log(error);
+                })
+        }
     }
 
     return (
@@ -64,11 +140,11 @@ function Formulario() {
                     <Row>
                         <Col className='p-2'>
                             <Form.Label>Correo electrónico:</Form.Label>
-                            <Form.Control type='text' onChange={(event) => setEmailTemp(event.target.value)} value={emailTemp} />
+                            <Form.Control type='text' onChange={(event) => setEmailTemp(event.target.value)} value={emailTemp} disabled={login} />
                         </Col>
                         <Col className='p-2'>
                             <Form.Label>Contraseña:</Form.Label>
-                            <Form.Control type='password' onChange={(event) => setPasswordTemp(event.target.value)} value={passwordTemp} disabled={login}/>
+                            <Form.Control type='password' onChange={(event) => setPasswordTemp(event.target.value)} value={passwordTemp} disabled={login} />
                         </Col>
                     </Row>
                     <Row>
@@ -149,7 +225,7 @@ function Formulario() {
                     </Row>
                     <Row>
                         <Col className='p-2'>
-                            <Button type='submit' variant='primary'>LOGIN</Button>
+                            <Button type='submit' variant='primary'>REALIZAR PEDIDO</Button>
                         </Col>
                     </Row>
                 </Container>
