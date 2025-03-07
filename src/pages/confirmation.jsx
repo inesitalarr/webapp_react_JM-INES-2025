@@ -55,6 +55,8 @@ function Confirmation() {
                 <th>Precio</th>
                 <th>Cantidad</th>
                 <th>Eliminar</th>
+                <th></th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
