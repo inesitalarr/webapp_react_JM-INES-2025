@@ -4,7 +4,7 @@ import { Link } from 'react-router'; // Cuidado, usa 'react-router-dom' no 'reac
 import { useContext } from 'react';
 import GlobalContext from '../../store/globalContext';
 
-function Header() {
+function Header({ isCartHighlighted,isCartHighlightedRed }) {
 
     const login = useContext(GlobalContext).login;
 
@@ -32,7 +32,9 @@ function Header() {
                     </Nav.Item>
                     <Nav.Item>
                         <Link to='/carrito'>
+                        <div className={`cart-icon ${isCartHighlighted ? 'highlighted' : ''} ${isCartHighlightedRed ? 'highlighted-red' : ''}`}>
                             <img src='/imgs/icons/carrito.png' alt='Carrito' width='70' />
+                        </div>
                         </Link>
                     </Nav.Item>
                     <Nav.Item>

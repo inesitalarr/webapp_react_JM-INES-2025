@@ -17,6 +17,9 @@ function App() {
   const [listaProductos, setListaProductos] = useState([]);
   const [login, setLogin] = useState(false);
   const [username, setUsername] = useState('');
+  const [isCartHighlighted, setIsCartHighlighted] = useState(false);
+  const [isCartHighlightedRed, setIsCartHighlightedRed] = useState(false);
+
 
   const menosHandler = (e) => {
     console.log('Quitar ' + e.target.value);
@@ -34,6 +37,12 @@ function App() {
         }
       }
     }
+
+    // Iluminar el icono del carrito en rojo
+    setIsCartHighlightedRed(true);
+    setTimeout(() => {
+      setIsCartHighlightedRed(false);
+    }, 1000); // El icono se iluminará en rojo durante 1 segundo
     console.log(listaProductos);
   }
 
@@ -57,6 +66,13 @@ function App() {
       aux.push([e.target.value, 1]);
       setListaProductos(aux);
     }
+
+    // Iluminar el icono del carrito
+    setIsCartHighlighted(true);
+    setTimeout(() => {
+      setIsCartHighlighted(false);
+    }, 1000); // El icono se iluminará durante 1 segundo
+
     console.log(listaProductos);
   }
 
@@ -70,8 +86,8 @@ function App() {
     <>
       <GlobalContext.Provider value={{ login: login, loginHandler: loginHandler }}>
         <CarritoContext.Provider value={{ listaProductos: listaProductos, setListaProductos: setListaProductos, menosHandler: menosHandler, masHandler: masHandler }}>
-          <Header />
-          <div style={{ height: 100 }}></div>
+        <Header isCartHighlighted={isCartHighlighted} isCartHighlightedRed={isCartHighlightedRed} />
+        <div style={{ height: 100 }}></div>
           <Routes>
             <Route path='/' element={<Products />} />
             <Route path='/carrito' element={<Carrito />} />
