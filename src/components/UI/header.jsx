@@ -11,10 +11,10 @@ function Header(props) {
     let parteLogin, parteLink;
     if (login) {
         parteLogin = <img src='/imgs/icons/logged_in.png' alt='Login' width='70' />;
-        parteLink = "/login";
+        parteLink = "/pedidos";
     } else {
         parteLogin = <img src='/imgs/icons/logged_out.png' alt='Login' width='70' />;
-        parteLink = "/pedidos"
+        parteLink = "/login"
 
     }
 
