@@ -27,8 +27,8 @@ function Login() {
             .then((response) => {
                 alert('¡Login correcto!');
                 console.log(response);
-                loginHandler(response.data.email);
-                setTimeout(() => { navega('/') }, 1000);
+                loginHandler(response.data.idToken);
+                setTimeout(() => { navega('/') }, 500);
             })
             .catch((error) => {
                 alert('¡Login incorrecto!');

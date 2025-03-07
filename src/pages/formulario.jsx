@@ -1,6 +1,7 @@
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import GlobalContext from "../store/globalContext";
+import axios from "axios";
 
 function Formulario() {
 
@@ -21,9 +22,22 @@ function Formulario() {
     const [cvvTemp, setCvvTemp] = useState(0);
 
     const login = useContext(GlobalContext).login;
-    if (login) {
-        setEmailTemp(useContext(GlobalContext).username);
-    }
+    const idToken = useContext(GlobalContext).idToken;
+    useEffect(() => {
+        if (login) {
+            const authData = {
+                idToken: idToken
+            }
+            axios.post('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyDw-qrJJtrzAnjQY1eB6tUbruo3TanpKRc', authData)
+                .then((response) => {
+                    setEmailTemp(response.data.users[0].email);
+                })
+                .catch((error) => {
+                    alert('¡Login incorrecto!');
+                console.log(error);
+                })
+        }
+    }, [login]);
 
     const submitHandler = (event) => {
         event.preventDefault();
@@ -54,7 +68,7 @@ function Formulario() {
                         </Col>
                         <Col className='p-2'>
                             <Form.Label>Contraseña:</Form.Label>
-                            <Form.Control type='password' onChange={(event) => setPasswordTemp(event.target.value)} value={passwordTemp} />
+                            <Form.Control type='password' onChange={(event) => setPasswordTemp(event.target.value)} value={passwordTemp} disabled={login}/>
                         </Col>
                     </Row>
                     <Row>
