@@ -2,7 +2,8 @@ import React from "react";
 
 const GlobalContext = React.createContext({
     login: false,
-    loginHandler: () => {}
+    loginHandler: () => {},
+    username: ''
 });
 
 export default GlobalContext;

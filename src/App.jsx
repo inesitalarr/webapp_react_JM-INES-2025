@@ -68,7 +68,7 @@ function App() {
 
   return (
     <>
-      <GlobalContext.Provider value={{ login: login, loginHandler: loginHandler }}>
+      <GlobalContext.Provider value={{ login: login, loginHandler: loginHandler, username: username }}>
         <CarritoContext.Provider value={{ listaProductos: listaProductos, setListaProductos: setListaProductos, menosHandler: menosHandler, masHandler: masHandler }}>
           <Header />
           <div style={{ height: 100 }}></div>

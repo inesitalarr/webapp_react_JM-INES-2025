@@ -1,5 +1,6 @@
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import { useState, useContext } from "react";
+import GlobalContext from "../store/globalContext";
 
 function Formulario() {
 
@@ -18,6 +19,11 @@ function Formulario() {
     const [caducidadMesTemp, setCaducidadMesTemp] = useState(0);
     const [caducidadAnioTemp, setCaducidadAnioTemp] = useState(0);
     const [cvvTemp, setCvvTemp] = useState(0);
+
+    const login = useContext(GlobalContext).login;
+    if (login) {
+        setEmailTemp(useContext(GlobalContext).username);
+    }
 
     const submitHandler = (event) => {
         event.preventDefault();
