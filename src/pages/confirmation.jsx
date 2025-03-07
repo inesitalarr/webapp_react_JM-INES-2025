@@ -9,7 +9,8 @@ function Confirmation() {
   const { listaProductos, setListaProductos } = useContext(CarritoContext);
   const cartItems = listaProductos;
   const [productArray, setProductArray] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const total = useContext(CarritoContext).total;
+  const totalHandler = useContext(CarritoContext).totalHandler;
 
   useEffect(() => {
     axios.get('https://webapp-react-jm-ines-2025-default-rtdb.europe-west1.firebasedatabase.app/productos.json')
@@ -30,7 +31,7 @@ function Confirmation() {
 
         // Calcular el precio total
         const total = arrayProductos.reduce((acc, producto) => acc + (producto.precio * producto.cantidad), 0);
-        setTotalPrice(total);
+        totalHandler(total);
       })
       .catch((error) => { console.log('¡Ha ocurrido un error!') })
   }, [cartItems]);
@@ -41,7 +42,7 @@ function Confirmation() {
   };
 
   return (
-    <div>
+    <>
       <h2>Carrito de Compra</h2>
       {cartItems.length === 0 ? (
         <p>El carrito está vacío</p>
@@ -64,11 +65,11 @@ function Confirmation() {
               })}
             </tbody>
           </Table>
-          <h2>Total: {totalPrice.toFixed(2)} €</h2>
+          <h2>Total: {total.toFixed(2)} €</h2>
           <Button variant='dark'><Link to="/formulario">CONTINUAR CON EL PAGO</Link></Button>
         </>
       )}
-    </div>
+    </>
   );
 }
 

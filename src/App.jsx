@@ -11,6 +11,7 @@ import Login from './pages/login.jsx'
 import Formulario from './pages/formulario.jsx'
 import Confirmation from './pages/confirmation.jsx'
 import Agradecimiento from './pages/agradecimiento.jsx'
+import Pedidos from './pages/pedidos.jsx'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
   const [idToken, setIdToken] = useState('');
   const [isCartHighlighted, setIsCartHighlighted] = useState(false);
   const [isCartHighlightedRed, setIsCartHighlightedRed] = useState(false);
+  const [total, setTotal] = useState(0);
 
 
   const menosHandler = (e) => {
@@ -79,6 +81,14 @@ function App() {
     console.log(listaProductos);
   }
 
+  const vaciarCarrito = () => {
+    setListaProductos([]);
+  }
+
+  const totalHandler = (total) => {
+    setTotal(total);
+  }
+
   const loginHandler = (idToken) => {
     setLogin(true);
     setIdToken(idToken);
@@ -88,7 +98,7 @@ function App() {
   return (
     <>
       <GlobalContext.Provider value={{ login: login, loginHandler: loginHandler, idToken: idToken }}>
-        <CarritoContext.Provider value={{ listaProductos: listaProductos, setListaProductos: setListaProductos, menosHandler: menosHandler, masHandler: masHandler }}>
+        <CarritoContext.Provider value={{ listaProductos: listaProductos, setListaProductos: setListaProductos, menosHandler: menosHandler, masHandler: masHandler, vaciarCarrito: vaciarCarrito, total: total, totalHandler: totalHandler }}>
         <Header isCartHighlighted={isCartHighlighted} isCartHighlightedRed={isCartHighlightedRed} />
         <div style={{ height: 100 }}></div>
           <Routes>
@@ -98,6 +108,7 @@ function App() {
             <Route path='/formulario' element={<Formulario />} />
             <Route path='/confirmation' element={<Confirmation />} />
             <Route path='/agradecimiento' element={<Agradecimiento />} />
+            <Route path='/pedidos' element={<Pedidos />} />
             <Route path='*' element={<h1>404 - Not found</h1>} />
           </Routes>
           <Footer />

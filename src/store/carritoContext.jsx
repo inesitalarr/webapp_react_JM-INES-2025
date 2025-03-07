@@ -4,7 +4,10 @@ const CarritoContext = React.createContext({
     listaProductos: [],
     setListaProductos: () => {},
     menosHandler: () => {},
-    masHandler: () => {}
+    masHandler: () => {},
+    vaciarCarrito: () => {},
+    total: 0,
+    totalHandler: () => {}
 });
 
 
