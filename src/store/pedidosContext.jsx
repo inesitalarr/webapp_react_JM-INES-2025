@@ -1,7 +1,7 @@
 import React from 'react';
 
 const PedidosContext = React.createContext({
-    pedidos: pedidos,
+    pedidos: [],
     borrarPedido: () => {}
 });
 
