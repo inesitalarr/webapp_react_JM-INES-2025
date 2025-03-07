@@ -8,7 +8,7 @@ function Header(props) {
 
     const login = useContext(GlobalContext).login;
 
-    let parteLogin;
+    let parteLogin, parteLink;
     if (login) {
         parteLogin = <img src='/imgs/icons/logged_in.png' alt='Login' width='70' />;
         parteLink = "/login";
