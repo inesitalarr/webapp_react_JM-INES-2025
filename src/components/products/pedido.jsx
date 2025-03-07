@@ -19,13 +19,10 @@ function Pedido(props) {
     return (
         <Accordion>
           <Card>
-          <Accordion>
-            Pedido ID: {idPedido} - Fecha: {fecha}
-            <Button variant="link" onClick={borrarPedido} style={{ float: 'right' }}>
-                <Image src="/public/imgs/icons/papelera.png" width="40" />
-            </Button>
-            </Accordion>
-            <Accordion>
+            <Accordion.Toggle as={Card.Header} eventKey="0">
+              Pedido ID: {idPedido} - Fecha: {fecha}
+            </Accordion.Toggle>
+            <Accordion.Collapse eventKey="0">
               <Card.Body>
                 <Table striped bordered hover>
                   <thead>
@@ -38,16 +35,16 @@ function Pedido(props) {
                     </tr>
                   </thead>
                   <tbody>
-                    {listaProductos.map((producto) => (
-                      <ItemPedido producto={producto} />
+                    {listaProductos.map((producto, index) => (
+                      <ItemPedido key={index} producto={producto} />
                     ))}
                   </tbody>
                 </Table>
                 <div className="total">
-                  <h5>Total pedido: {total} €</h5>
+                  <h5>Total: {total} €</h5>
                 </div>
               </Card.Body>
-            </Accordion>
+            </Accordion.Collapse>
           </Card>
         </Accordion>
       );
