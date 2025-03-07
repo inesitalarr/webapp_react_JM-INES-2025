@@ -27,6 +27,8 @@ function Formulario() {
     const loginHandler = useContext(GlobalContext).loginHandler;
     const idToken = useContext(GlobalContext).idToken;
     const listaProductos = useContext(CarritoContext).listaProductos;
+    const vaciarCarrito = useContext(CarritoContext).vaciarCarrito;
+    const total = useContext(CarritoContext).total;
 
     const navega = useNavigate();
 
@@ -66,6 +68,7 @@ function Formulario() {
 
 
         if (login) {
+            const current_time = new Date();
             const pedidoData = {
                 idToken: idToken,
                 nombre: nombreTemp,
@@ -80,11 +83,14 @@ function Formulario() {
                 caducidadMes: caducidadMesTemp,
                 caducidadAnio: caducidadAnioTemp,
                 cvv: cvvTemp,
-                listaProductos: listaProductos
+                listaProductos: listaProductos,
+                total: total,
+                fecha: current_time.getDate() + '/' + (current_time.getMonth() + 1) + '/' + current_time.getFullYear()
             }
             axios.post('https://webapp-react-jm-ines-2025-default-rtdb.europe-west1.firebasedatabase.app/pedidos.json?auth=' + idToken, pedidoData)
                 .then((response) => {
                     alert('Pedido añadido correctamente');
+                    vaciarCarrito();
                     setTimeout(() => { navega('/agradecimiento') }, 500);
                 })
                 .catch((error) => {
@@ -101,6 +107,7 @@ function Formulario() {
                     console.log(response);
                     loginHandler(response.data.idToken);
 
+                    const current_time = new Date();
                     const pedidoData = {
                         idToken: response.data.idToken,
                         nombre: nombreTemp,
@@ -115,11 +122,14 @@ function Formulario() {
                         caducidadMes: caducidadMesTemp,
                         caducidadAnio: caducidadAnioTemp,
                         cvv: cvvTemp,
-                        listaProductos: listaProductos
+                        listaProductos: listaProductos,
+                        total: total,
+                        fecha: current_time.getDate() + '/' + (current_time.getMonth() + 1) + '/' + current_time.getFullYear()
                     }
                     axios.post('https://webapp-react-jm-ines-2025-default-rtdb.europe-west1.firebasedatabase.app/pedidos.json?auth=' + response.data.idToken, pedidoData)
                         .then((response) => {
                             alert('Pedido añadido correctamente');
+                            vaciarCarrito();
                             setTimeout(() => { navega('/agradecimiento') }, 500);
                         })
                         .catch((error) => {
