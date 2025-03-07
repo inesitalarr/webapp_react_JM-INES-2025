@@ -2,6 +2,7 @@ import { Form, Col, Row, Container, Button } from 'react-bootstrap';
 import { useState, useContext } from 'react';
 import GlobalContext from '../store/globalContext';
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 function Login() {
 
@@ -9,6 +10,8 @@ function Login() {
     const [passwordTemp, setPasswordTemp] = useState('');
 
     const loginHandler = useContext(GlobalContext).loginHandler;
+
+    const navega = useNavigate();
 
     const submitHandler = (event) => {
         event.preventDefault();
@@ -25,6 +28,7 @@ function Login() {
                 alert('¡Login correcto!');
                 console.log(response);
                 loginHandler(response.data.email);
+                setTimeout(() => { navega('/') }, 1000);
             })
             .catch((error) => {
                 alert('¡Login incorrecto!');
