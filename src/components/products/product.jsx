@@ -8,8 +8,11 @@ function Product(props) {
 
     const menosHandler = useContext(CarritoContext).menosHandler;
     const masHandler = useContext(CarritoContext).masHandler;
+    const listaProductos = useContext(CarritoContext).listaProductos;
 
     
+    // Verificar si el producto existe en listaProductos
+    const productoEnCarrito = listaProductos.find(item => item[0] === props.indice);
 
     return (
         <tr>
@@ -29,7 +32,17 @@ function Product(props) {
                 <div className='producto__stock'>{props.producto.stock}</div>
             </td>
             <td>
-                <Button variant='secondary' onClick={menosHandler} value={props.indice}>-</Button>
+
+                <Button
+                    variant='secondary'
+                    onClick={menosHandler}
+                    value={props.indice}
+                    disabled={!productoEnCarrito}
+                >
+                -
+                </Button>
+
+
             </td>
             <td>
                 <Button variant='secondary' onClick={masHandler} value={props.indice}>+</Button>
