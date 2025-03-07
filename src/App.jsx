@@ -26,6 +26,13 @@ function App() {
 
     for (let i = 0; i < listaProductos.length; i++) {
       if (listaProductos[i][0] === e.target.value) {
+
+        // Iluminar el icono del carrito en rojo
+        setIsCartHighlightedRed(true);
+        setTimeout(() => {
+          setIsCartHighlightedRed(false);
+        }, 1000); // El icono se iluminará en rojo durante 1 segundo
+
         if (listaProductos[i][1] == 1) {
           let aux = listaProductos.slice();
           aux.splice(i, 1);
@@ -38,11 +45,7 @@ function App() {
       }
     }
 
-    // Iluminar el icono del carrito en rojo
-    setIsCartHighlightedRed(true);
-    setTimeout(() => {
-      setIsCartHighlightedRed(false);
-    }, 1000); // El icono se iluminará en rojo durante 1 segundo
+    
     console.log(listaProductos);
   }
 
