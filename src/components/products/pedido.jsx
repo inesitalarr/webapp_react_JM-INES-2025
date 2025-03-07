@@ -35,7 +35,7 @@ function Pedido(props) {
                     </tr>
                   </thead>
                   <tbody>
-                    {listaProductos.map((producto, index) => (
+                    {listaProductos.map((index, producto) => (
                       <ItemPedido key={index} producto={producto} />
                     ))}
                   </tbody>
