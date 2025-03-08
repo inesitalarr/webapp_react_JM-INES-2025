@@ -25,7 +25,7 @@ function Pedido(props) {
       <Accordion.Header>
         Pedido ID: {idPedido} - Fecha: {fecha}
         <Button variant="link" onClick={borrarHandler} style={{ float: 'right' }}>
-          <Image src="/public/imgs/icons/papelera.png" width="40" />
+          <Image src="/imgs/icons/papelera.png" width="40" />
         </Button>
       </Accordion.Header>
       <Accordion.Body>
