@@ -26,6 +26,7 @@ function Formulario() {
     const login = useContext(GlobalContext).login;
     const loginHandler = useContext(GlobalContext).loginHandler;
     const idToken = useContext(GlobalContext).idToken;
+    const uid = useContext(GlobalContext).uid;
     const listaProductos = useContext(CarritoContext).listaProductos;
     const vaciarCarrito = useContext(CarritoContext).vaciarCarrito;
     const total = useContext(CarritoContext).total;
@@ -70,7 +71,7 @@ function Formulario() {
         if (login) {
             const current_time = new Date();
             const pedidoData = {
-                idToken: idToken,
+                uid: uid,
                 nombre: nombreTemp,
                 apellidos: apellidosTemp,
                 telefono: telefonoTemp,
@@ -105,11 +106,11 @@ function Formulario() {
             axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDw-qrJJtrzAnjQY1eB6tUbruo3TanpKRc', authData)
                 .then((response) => {
                     console.log(response);
-                    loginHandler(response.data.idToken);
+                    loginHandler(response.data.idToken, response.data.localId);
 
                     const current_time = new Date();
                     const pedidoData = {
-                        idToken: response.data.idToken,
+                        uid: response.data.localId,
                         nombre: nombreTemp,
                         apellidos: apellidosTemp,
                         telefono: telefonoTemp,

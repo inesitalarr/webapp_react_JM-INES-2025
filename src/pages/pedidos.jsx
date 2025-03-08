@@ -10,15 +10,16 @@ function Pedidos() {
     const [pedidos, setPedidos] = useState([]);
 
     const idToken = useContext(GlobalContext).idToken;
-    console.log(idToken);
+    const uid = useContext(GlobalContext).uid;
+    console.log(uid);
 
     useEffect(() => {
         axios.get('https://webapp-react-jm-ines-2025-default-rtdb.europe-west1.firebasedatabase.app/pedidos.json')
             .then((response) => {
                 let arrayPedidos = [];
                 for (const key in response.data) {
-                    console.log(response.data[key].idToken === idToken);
-                    if (response.data[key].idToken === idToken) {
+                    console.log(response.data[key].uid === uid);
+                    if (response.data[key].uid === uid) {
                         arrayPedidos.push({
                             id: key,
                             fecha: response.data[key].fecha,
@@ -32,10 +33,10 @@ function Pedidos() {
                 setPedidos(arrayPedidos);
             })
             .catch((error) => { console.log('¡Ha ocurrido un error!') })
-    }, [idToken]);
+    }, [uid]);
 
     const borrarPedido = (id) => {
-        axios.delete(`https://webapp-react-jm-ines-2025-default-rtdb.europe-west1.firebasedatabase.app/pedidos/${id}.json`)
+        axios.delete(`https://webapp-react-jm-ines-2025-default-rtdb.europe-west1.firebasedatabase.app/pedidos/${id}.json?auth=${idToken}`)
             .then((response) => {
                 console.log(response);
                 const updatedPedidos = pedidos.filter(pedido => pedido.id !== id);

@@ -27,7 +27,7 @@ function Login() {
             .then((response) => {
                 alert('¡Login correcto!');
                 console.log(response);
-                loginHandler(response.data.idToken);
+                loginHandler(response.data.idToken, response.data.localId);
                 setTimeout(() => { navega('/') }, 500);
             })
             .catch((error) => {
