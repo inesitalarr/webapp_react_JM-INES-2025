@@ -15,13 +15,17 @@ function Pedido(props) {
     const idPedido = props.id;
     const borrarPedido =  useContext(PedidosContext).borrarPedido; //se le introduce a la funcion la id del pedido
 
+    const borrarHandler = () => {
+        borrarPedido(idPedido);
+    }
+
 
     return (
         <Accordion>
           <Card>
           <Accordion>
             Pedido ID: {idPedido} - Fecha: {fecha}
-            <Button variant="link" onClick={borrarPedido} style={{ float: 'right' }}>
+            <Button variant="link" onClick={borrarHandler} style={{ float: 'right' }}>
                 <Image src="/public/imgs/icons/papelera.png" width="40" />
             </Button>
             </Accordion>

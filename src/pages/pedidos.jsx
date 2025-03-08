@@ -33,7 +33,7 @@ function Pedidos() {
                 setPedidos(arrayPedidos);
             })
             .catch((error) => { console.log('¡Ha ocurrido un error!') })
-    }, [uid]);
+    }, [uid, pedidos.length]);
 
     const borrarPedido = (id) => {
         axios.delete(`https://webapp-react-jm-ines-2025-default-rtdb.europe-west1.firebasedatabase.app/pedidos/${id}.json?auth=${idToken}`)
