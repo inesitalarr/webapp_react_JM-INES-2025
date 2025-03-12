@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import CarritoContext from './store/carritoContext'
 import GlobalContext from './store/globalContext'
@@ -40,15 +40,27 @@ function App() {
           let aux = listaProductos.slice();
           aux.splice(i, 1);
           setListaProductos(aux);
+
+          let aux2 = '';
+          for (let i = 0; i < aux.length; i++) {
+            aux2 += aux[i][0] + ',' + aux[i][1] + ';';
+          }
+          localStorage.setItem('listaProductos', aux2);
         } else {
           let aux = listaProductos.slice();
           aux[i][1] = listaProductos[i][1] - 1;
           setListaProductos(aux);
+
+          let aux2 = '';
+          for (let i = 0; i < aux.length; i++) {
+            aux2 += aux[i][0] + ',' + aux[i][1] + ';';
+          }
+          localStorage.setItem('listaProductos', aux2);
         }
       }
     }
 
-    
+
     console.log(listaProductos);
   }
 
@@ -64,6 +76,8 @@ function App() {
         aux[i][1] = listaProductos[i][1] + 1;
 
         setListaProductos(aux);
+
+        carritoLocalStorage(aux);
       }
     }
 
@@ -71,6 +85,8 @@ function App() {
       let aux = listaProductos.slice();
       aux.push([e.target.value, 1]);
       setListaProductos(aux);
+
+      carritoLocalStorage(aux);
     }
 
     // Iluminar el icono del carrito
@@ -84,6 +100,8 @@ function App() {
 
   const vaciarCarrito = () => {
     setListaProductos([]);
+    localStorage.removeItem('listaProductos');
+    setTotal(0);
   }
 
   const totalHandler = (total) => {
@@ -94,15 +112,46 @@ function App() {
     setLogin(true);
     setIdToken(idToken);
     setUid(uid);
+
+    loginLocalStorage(idToken, uid);
   }
 
+  useEffect(() => {
+    if (localStorage.getItem('login') === 'true') {
+      setLogin(true);
+      loginHandler(localStorage.getItem('idToken'), localStorage.getItem('uid'));
+    }
+    let aux = localStorage.getItem('listaProductos');
+    if (aux !== null) {
+      aux = aux.split(';');
+      let lista = [];
+      for (let i = 0; i < aux.length; i++) {
+        lista.push(aux[i].split(','));
+      }
+      setListaProductos(lista);
+    }
+  }, [])
+
+  const loginLocalStorage = (idToken, uid) => {
+    setLogin(true);
+    setIdToken(idToken);
+    setUid(uid);
+  }
+
+  const carritoLocalStorage = (carrito) => {
+    let aux = '';
+      for (let i = 0; i < carrito.length; i++) {
+        aux += carrito[i][0] + ',' + carrito[i][1] + ';';
+      }
+      localStorage.setItem('listaProductos', aux);
+    }
 
   return (
     <>
       <GlobalContext.Provider value={{ login: login, loginHandler: loginHandler, idToken: idToken, uid: uid }}>
         <CarritoContext.Provider value={{ listaProductos: listaProductos, setListaProductos: setListaProductos, menosHandler: menosHandler, masHandler: masHandler, vaciarCarrito: vaciarCarrito, total: total, totalHandler: totalHandler }}>
-        <Header isCartHighlighted={isCartHighlighted} isCartHighlightedRed={isCartHighlightedRed} />
-        <div style={{ height: 100 }}></div>
+          <Header isCartHighlighted={isCartHighlighted} isCartHighlightedRed={isCartHighlightedRed} />
+          <div style={{ height: 100 }}></div>
           <Routes>
             <Route path='/' element={<Products />} />
             <Route path='/carrito' element={<Carrito />} />
