@@ -49,7 +49,7 @@ function Pedidos() {
 
     return (
         <PedidosContext.Provider value={{ pedidos: pedidos, borrarPedido: borrarPedido }}>
-            <h2>Lista de pedidos</h2>
+            <h2>Historial de tus pedidos</h2>
             {pedidos.length === 0 ? (
                 <p>No hay pedidos</p>
             ) : (
