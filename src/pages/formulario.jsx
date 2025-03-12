@@ -1,9 +1,9 @@
-import { Form, Container, Row, Col, Button } from "react-bootstrap";
+import { Form, Container, Row, Col, Button} from "react-bootstrap";
 import { useState, useContext, useEffect } from "react";
 import GlobalContext from "../store/globalContext";
 import CarritoContext from "../store/carritoContext";
 import axios from "axios";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router";
 
 function Formulario() {
 
@@ -236,7 +236,12 @@ function Formulario() {
                     </Row>
                     <Row>
                         <Col className='p-2'>
-                            <Button type='submit' variant='primary'>REALIZAR PEDIDO</Button>
+                            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <Button variant='danger'><Link to="/" style={{ color: 'white', textDecoration: 'none' }}>CANCELAR PEDIDO</Link></Button>
+                            <div>
+                                    <Button type='submit' variant='success'>REALIZAR PEDIDO</Button>
+                                </div>
+                            </div>
                         </Col>
                     </Row>
                 </Container>
