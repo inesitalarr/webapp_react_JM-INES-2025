@@ -10,6 +10,7 @@ function Carrito() {
   const cartItems = useContext(CarritoContext).listaProductos;
   const [productArray, setProductArray] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const vaciarCarrito = useContext(CarritoContext).vaciarCarrito;
 
 
   useEffect(() => {
@@ -65,8 +66,13 @@ function Carrito() {
               })}
             </tbody>
           </Table>
-          <h2>Total: {totalPrice.toFixed(2)} €</h2>
-          <Button variant='dark'><Link to="/confirmation">REALIZAR PEDIDO</Link></Button>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Button variant='danger' onClick={vaciarCarrito}><Link to="/" style={{ color: 'white', textDecoration: 'none' }}>VACIAR CESTA</Link></Button>
+            <div>
+              <Button variant='dark' style={{ marginRight: '10px' }}><Link to="/" style={{ color: 'white', textDecoration: 'none' }}>SEGUIR COMPRANDO</Link></Button>
+              <Button variant='success'><Link to="/confirmation" style={{ color: 'white', textDecoration: 'none' }}>REALIZAR PEDIDO</Link></Button>
+            </div>
+          </div>
         </>
       )}
     </div>

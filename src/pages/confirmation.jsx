@@ -7,6 +7,7 @@ import { Link } from 'react-router'; // Cambiado a 'react-router-dom'
 
 function Confirmation() {
   const { listaProductos, setListaProductos } = useContext(CarritoContext);
+  const vaciarCarrito = useContext(CarritoContext).vaciarCarrito;
   const cartItems = listaProductos;
   const [productArray, setProductArray] = useState([]);
   const total = useContext(CarritoContext).total;
@@ -68,7 +69,14 @@ function Confirmation() {
             </tbody>
           </Table>
           <h2>Total: {total.toFixed(2)} €</h2>
-          <Button variant='dark'><Link to="/formulario">CONTINUAR CON EL PAGO</Link></Button>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Button variant='danger' onClick={vaciarCarrito}><Link to="/" style={{ color: 'white', textDecoration: 'none' }}>VACIAR CESTA</Link></Button>
+              <div>
+                <Button variant='dark' style={{ marginRight: '10px' }}><Link to="/" style={{ color: 'white', textDecoration: 'none' }}>SEGUIR COMPRANDO</Link></Button>
+                <Button variant='success'><Link to="/formulario" style={{ color: 'white', textDecoration: 'none' }}>CONTINUAR CON EL PAGO</Link></Button>
+              </div>
+          </div>
+        
         </>
       )}
     </>
