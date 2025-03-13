@@ -24,7 +24,7 @@ function Header(props) {
 
     }, [cartItems]);
 
-
+    console.log("numItems: ", numItems);
  
 
     let parteLogin, parteLink;
