@@ -37,10 +37,19 @@ function Confirmation() {
       .catch((error) => { console.log('¡Ha ocurrido un error!') })
   }, [cartItems]);
 
+  const carritoLocalStorage = (carrito) => {
+    let aux = '';
+    for (let i = 0; i < carrito.length; i++) {
+      aux += carrito[i][0] + ',' + carrito[i][1] + ';';
+    }
+    localStorage.setItem('listaProductos', aux);
+  };
+
   const handleRemoveItem = (id) => {
     const updatedCartItems = cartItems.filter(item => item[0] !== id);
     setListaProductos(updatedCartItems);
-  };
+    carritoLocalStorage(updatedCartItems);
+  };  
 
   return (
     <>
