@@ -239,7 +239,7 @@ function Formulario() {
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                             <Button variant='danger'><Link to="/" style={{ color: 'white', textDecoration: 'none' }}>CANCELAR PEDIDO</Link></Button>
                             <div>
-                                    <Button type='submit' variant='success'>REALIZAR PEDIDO</Button>
+                                    <Button type='submit' variant='success' style={{ fontWeight: 'bold' }}>REALIZAR PEDIDO</Button>
                                 </div>
                             </div>
                         </Col>
