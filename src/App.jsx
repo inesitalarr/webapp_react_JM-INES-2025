@@ -73,11 +73,13 @@ function App() {
         existe = true;
 
         let aux = listaProductos.slice();
-        aux[i][1] = listaProductos[i][1] + 1;
+        aux[i][1] = parseInt(listaProductos[i][1], 10) + 1;
 
         setListaProductos(aux);
 
         carritoLocalStorage(aux);
+
+        
       }
     }
 
@@ -127,6 +129,7 @@ function App() {
       let lista = [];
       for (let i = 0; i < aux.length; i++) {
         lista.push(aux[i].split(','));
+        
       }
       setListaProductos(lista);
     }
