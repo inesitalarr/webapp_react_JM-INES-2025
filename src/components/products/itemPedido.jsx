@@ -41,7 +41,7 @@ function ItemPedido(props) {
   return (
     <tr>
       <td>
-        <Image src={`/public/imgs/products/${productInfo.imagen}`} roundedCircle width='50' />
+        <Image src={`/imgs/products/${productInfo.imagen}`} roundedCircle width='50' />
       </td>
       <td>{productInfo.nombre}</td>
       <td>{productInfo.precio} €</td>
