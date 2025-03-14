@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import PedidosContext from '../store/pedidosContext';
-import { Accordion } from 'react-bootstrap';
+import { Accordion, Row, Button, Container } from 'react-bootstrap';
 import Pedido from '../components/products/pedido.jsx';
 import GlobalContext from '../store/globalContext';
+import { Link } from 'react-router';
 
 function Pedidos() {
 
@@ -12,6 +13,8 @@ function Pedidos() {
     const idToken = useContext(GlobalContext).idToken;
     const uid = useContext(GlobalContext).uid;
     console.log(uid);
+
+    const provocarLogout = useContext(GlobalContext).provocarLogout;
 
     useEffect(() => {
         axios.get('https://webapp-react-jm-ines-2025-default-rtdb.europe-west1.firebasedatabase.app/pedidos.json')
@@ -49,17 +52,30 @@ function Pedidos() {
 
     return (
         <PedidosContext.Provider value={{ pedidos: pedidos, borrarPedido: borrarPedido }}>
-            <h2>Historial de tus pedidos</h2>
-            {pedidos.length === 0 ? (
-                <p>No hay pedidos</p>
-            ) : (
-                <Accordion>
-                    {pedidos.map((pedido) => {
-                        return(<Pedido key={pedido.id} id={pedido.id} fecha={pedido.fecha} total={pedido.total} listaProductos={pedido.listaProductos} opcionPago={pedido.opcionPago} tarjeta={pedido.tarjeta} />
-                        );
-                    })}
-                </Accordion>
-            )}
+            <Container fluid>
+                <Row className='justify-content-start'>
+                    <Link to="/">
+                        <Button variant="danger" onClick={provocarLogout}>
+                            LOGOUT
+                        </Button>
+                    </Link>
+                </Row>
+            </Container>
+            <Row>
+                <h2>Historial de tus pedidos</h2>
+            </Row>
+            <Row>
+                {pedidos.length === 0 ? (
+                    <p>No hay pedidos</p>
+                ) : (
+                    <Accordion>
+                        {pedidos.map((pedido) => {
+                            return (<Pedido key={pedido.id} id={pedido.id} fecha={pedido.fecha} total={pedido.total} listaProductos={pedido.listaProductos} opcionPago={pedido.opcionPago} tarjeta={pedido.tarjeta} />
+                            );
+                        })}
+                    </Accordion>
+                )}
+            </Row>
         </PedidosContext.Provider>
     );
 }

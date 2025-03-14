@@ -4,7 +4,8 @@ const GlobalContext = React.createContext({
     login: false,
     loginHandler: () => {},
     idToken: '',
-    uid: ''
+    uid: '',
+    provocarLogout: () => {}
 });
 
 export default GlobalContext;
