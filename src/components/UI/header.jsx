@@ -1,7 +1,7 @@
 import './header.css';
 import { Nav, Badge } from 'react-bootstrap';
 import { Link } from 'react-router'; // Cuidado, usa 'react-router-dom' no 'react-router'
-import { useContext, useState, useEffect} from 'react';
+import { useContext, useState, useEffect } from 'react';
 import GlobalContext from '../../store/globalContext';
 import CarritoContext from '../../store/carritoContext';
 
@@ -12,12 +12,12 @@ function Header(props) {
     const [numItems, setNumItems] = useState(0);
 
     useEffect(() => {
-      
-    
+
+
         if (cartItems.length == 0) {
             setNumItems(0);
         } else {
-            setNumItems(cartItems.reduce((acc, item) => acc + item[1],0));
+            setNumItems(cartItems.reduce((acc, item) => acc + item[1], 0));
         }
 
         console.log(numItems);
@@ -25,7 +25,7 @@ function Header(props) {
     }, [cartItems]);
 
     console.log("numItems: ", numItems);
- 
+
 
     let parteLogin, parteLink;
     if (login) {

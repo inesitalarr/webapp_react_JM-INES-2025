@@ -136,9 +136,9 @@ function App() {
   }, [])
 
   const loginLocalStorage = (idToken, uid) => {
-    setLogin(true);
-    setIdToken(idToken);
-    setUid(uid);
+    localStorage.setItem('login', 'true');
+    localStorage.setItem('idToken', idToken);
+    localStorage.setItem('uid', uid);
   }
 
   const carritoLocalStorage = (carrito) => {
