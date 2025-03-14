@@ -24,9 +24,6 @@ function Pedido(props) {
     <Accordion.Item eventKey={idPedido}>
       <Accordion.Header>
         Pedido ID: {idPedido} - Fecha: {fecha}
-        <Button variant="link" onClick={borrarHandler} style={{ float: 'right' }}>
-          <Image src="/imgs/icons/papelera.png" width="40" />
-        </Button>
       </Accordion.Header>
       <Accordion.Body>
         <Row>
@@ -49,14 +46,21 @@ function Pedido(props) {
               </tr>
             </thead>
             <tbody>
-              {listaProductos.map((producto) => (
-                <ItemPedido producto={producto} />
-              ))}
+              {listaProductos.map((producto) => {
+                return (<ItemPedido key={producto[0]} producto={producto} />)
+              })}
             </tbody>
           </Table>
-          <div className="total">
-            <h5>Total pedido: {total} €</h5>
-          </div>
+          <Row className="total">
+            <Col>
+              <h5>Total pedido: {total.toFixed(2)} €</h5>
+            </Col>
+            <Col>
+              <Button variant="link" onClick={borrarHandler} style={{ float: 'right' }}>
+                <Image src="/imgs/icons/papelera.png" width="40" />
+              </Button>
+            </Col>
+          </Row>
         </Row>
       </Accordion.Body>
     </Accordion.Item>

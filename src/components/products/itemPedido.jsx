@@ -27,9 +27,6 @@ function ItemPedido(props) {
         console.log('¡Ha ocurrido un error!', error);
         setError('¡Ha ocurrido un error!');
       })
-      .finally(() => {
-        setLoading(false);
-      });
   }, [productId]);
 
 
