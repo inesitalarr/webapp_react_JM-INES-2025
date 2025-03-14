@@ -1,5 +1,5 @@
 import './header.css';
-import { Nav, Badge } from 'react-bootstrap';
+import { Nav, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Link } from 'react-router'; // Cuidado, usa 'react-router-dom' no 'react-router'
 import { useContext, useState, useEffect } from 'react';
 import GlobalContext from '../../store/globalContext';
@@ -48,10 +48,24 @@ function Header(props) {
 
     let parteLogin, parteLink;
     if (login) {
-        parteLogin = <img src='/imgs/icons/logged_in.png' alt='Login' width='70' />;
+        parteLogin = (
+            <OverlayTrigger
+                placement="bottom"
+                overlay={<Tooltip id="tooltip-logged-in">Ver mis pedidos</Tooltip>}
+            >
+                <img src='/imgs/icons/logged_in.png' alt='Login' width='70' />
+            </OverlayTrigger>
+        );
         parteLink = "/pedidos";
     } else {
-        parteLogin = <img src='/imgs/icons/logged_out.png' alt='Login' width='70' />;
+        parteLogin = (
+            <OverlayTrigger
+                placement="bottom"
+                overlay={<Tooltip id="tooltip-logged-out">Iniciar sesión</Tooltip>}
+            >
+                <img src='/imgs/icons/logged_out.png' alt='Login' width='70' />
+            </OverlayTrigger>
+        );
         parteLink = "/login"
 
     }
@@ -72,19 +86,24 @@ function Header(props) {
                         <Link to='/' className='nav-link' style={{ color: '#ADD8E6', textDecoration: 'none', fontWeight: 'bold', fontSize: 20, margin: 10 }}>Página principal    |</Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Link to='/carrito'>
-                            <div className={`cart-icon ${props.isCartHighlighted ? 'highlighted' : ''} ${props.isCartHighlightedRed ? 'highlighted-red' : ''}`}>
-                                {numItems > 0 ?
-                                    <span class="position-absolute top-20 start-99 translate-middle badge rounded-pill bg-danger" >
-                                        {numItems}
-                                        < span class="visually-hidden" > unread messages</span>
-                                    </span>
-                                    : null}
+                        <OverlayTrigger
+                            placement="bottom"
+                            overlay={<Tooltip id="tooltip-cart">Ver carrito</Tooltip>}
+                        >
+                            <Link to='/carrito'>
+                                <div className={`cart-icon ${props.isCartHighlighted ? 'highlighted' : ''} ${props.isCartHighlightedRed ? 'highlighted-red' : ''}`}>
+                                    {numItems > 0 ?
+                                        <span class="position-absolute top-20 start-99 translate-middle badge rounded-pill bg-danger" >
+                                            {numItems}
+                                            < span class="visually-hidden" > unread messages</span>
+                                        </span>
+                                        : null}
 
-                                <img src='/imgs/icons/carrito.png' alt='Carrito' width='70' />
+                                    <img src='/imgs/icons/carrito.png' alt='Carrito' width='70' />
 
-                            </div>
-                        </Link>
+                                </div>
+                            </Link>
+                        </OverlayTrigger>
                     </Nav.Item>
                     <Nav.Item>
                         <Link to={parteLink}>
