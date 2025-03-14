@@ -1,31 +1,50 @@
 import './header.css';
 import { Nav, Badge } from 'react-bootstrap';
 import { Link } from 'react-router'; // Cuidado, usa 'react-router-dom' no 'react-router'
-import { useContext, useState, useEffect} from 'react';
+import { useContext, useState, useEffect } from 'react';
 import GlobalContext from '../../store/globalContext';
 import CarritoContext from '../../store/carritoContext';
 
 function Header(props) {
 
     const login = useContext(GlobalContext).login;
-    const cartItems = useContext(CarritoContext).listaProductos;
+    const { listaProductos, setListaProductos } = useContext(CarritoContext);
     const [numItems, setNumItems] = useState(0);
 
     useEffect(() => {
-      
-    
-        if (cartItems.length == 0) {
+        // Obtener datos de localStorage al cargar el componente
+        const storedCartItems = localStorage.getItem('listaProductos');
+        if (storedCartItems) {
+            try {
+                const parsedCartItems = JSON.parse(storedCartItems);
+                if (Array.isArray(parsedCartItems)) {
+                    setListaProductos(parsedCartItems);
+                }
+            } catch (error) {
+                console.error('Error parsing JSON from localStorage:', error);
+                localStorage.removeItem('listaProductos'); // Eliminar datos inválidos
+            }
+        }
+    }, [setListaProductos]);
+
+    useEffect(() => {
+        // Actualizar el número de items en el carrito
+        if (listaProductos.length === 0) {
             setNumItems(0);
         } else {
-            setNumItems(cartItems.reduce((acc, item) => acc + item[1],0));
+            setNumItems(listaProductos.reduce((acc, item) => acc + item[1], 0));
         }
 
-        console.log(numItems);
-
-    }, [cartItems]);
+        // Guardar datos en localStorage cada vez que listaProductos cambie
+        if (listaProductos && listaProductos.length > 0) {
+            localStorage.setItem('listaProductos', JSON.stringify(listaProductos));
+        } else {
+            localStorage.removeItem('listaProductos'); // Eliminar datos si el carrito está vacío
+        }
+    }, [listaProductos]);
 
     console.log("numItems: ", numItems);
- 
+
 
     let parteLogin, parteLink;
     if (login) {
