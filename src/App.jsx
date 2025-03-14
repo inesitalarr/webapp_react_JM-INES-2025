@@ -118,6 +118,16 @@ function App() {
     loginLocalStorage(idToken, uid);
   }
 
+  const provocarLogout = () => {
+    setLogin(false);
+    setIdToken('');
+    setUid('');
+
+    localStorage.removeItem('login');
+    localStorage.removeItem('idToken');
+    localStorage.removeItem('uid');
+  }
+
   useEffect(() => {
     if (localStorage.getItem('login') === 'true') {
       setLogin(true);
@@ -151,7 +161,7 @@ function App() {
 
   return (
     <>
-      <GlobalContext.Provider value={{ login: login, loginHandler: loginHandler, idToken: idToken, uid: uid }}>
+      <GlobalContext.Provider value={{ login: login, loginHandler: loginHandler, idToken: idToken, uid: uid, provocarLogout: provocarLogout }}>
         <CarritoContext.Provider value={{ listaProductos: listaProductos, setListaProductos: setListaProductos, menosHandler: menosHandler, masHandler: masHandler, vaciarCarrito: vaciarCarrito, total: total, totalHandler: totalHandler }}>
           <Header isCartHighlighted={isCartHighlighted} isCartHighlightedRed={isCartHighlightedRed} />
           <div style={{ height: 100 }}></div>
