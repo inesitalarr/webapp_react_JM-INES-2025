@@ -51,33 +51,35 @@ function Pedidos() {
 
 
     return (
-        <PedidosContext.Provider value={{ pedidos: pedidos, borrarPedido: borrarPedido }}>
-            <Container fluid>
-                <Row className='justify-content-start'>
-                    <Link to="/">
-                        <Button variant="danger" onClick={provocarLogout}>
-                            LOGOUT
-                        </Button>
-                    </Link>
+
+        <>
+            <div style={{ position: 'fixed', top: '120px', left: '20px' }}>
+                <Link to="/">
+                    <Button variant="danger" onClick={provocarLogout}>
+                        LOGOUT
+                    </Button>
+                </Link>
+            </div>
+            <PedidosContext.Provider value={{ pedidos: pedidos, borrarPedido: borrarPedido }}>
+                <Row>
+                    <h2>Historial de tus pedidos</h2>
                 </Row>
-            </Container>
-            <Row>
-                <h2>Historial de tus pedidos</h2>
-            </Row>
-            <Row>
-                {pedidos.length === 0 ? (
-                    <p>No hay pedidos</p>
-                ) : (
-                    <Accordion>
-                        {pedidos.map((pedido) => {
-                            return (<Pedido key={pedido.id} id={pedido.id} fecha={pedido.fecha} total={pedido.total} listaProductos={pedido.listaProductos} opcionPago={pedido.opcionPago} tarjeta={pedido.tarjeta} />
-                            );
-                        })}
-                    </Accordion>
-                )}
-            </Row>
-        </PedidosContext.Provider>
+                <Row>
+                    {pedidos.length === 0 ? (
+                        <p>No hay pedidos</p>
+                    ) : (
+                        <Accordion>
+                            {pedidos.map((pedido) => {
+                                return (<Pedido key={pedido.id} id={pedido.id} fecha={pedido.fecha} total={pedido.total} listaProductos={pedido.listaProductos} opcionPago={pedido.opcionPago} tarjeta={pedido.tarjeta} />
+                                );
+                            })}
+                        </Accordion>
+                    )}
+                </Row>
+            </PedidosContext.Provider>
+        </>
     );
+
 }
 
 export default Pedidos;
