@@ -2,7 +2,7 @@ import { Form, Col, Row, Container, Button } from 'react-bootstrap';
 import { useState, useContext } from 'react';
 import GlobalContext from '../store/globalContext';
 import axios from 'axios';
-import { useNavigate } from 'react-router';
+import { useNavigate, Link } from 'react-router';
 
 function Login() {
 
@@ -56,6 +56,11 @@ function Login() {
                     <Row>
                         <Col className='p-2'>
                             <Button type='submit' variant='primary'>LOGIN</Button>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col className='p-2'>
+                            <p>¿Todavía no tienes cuenta con nosotros? <Link to="/registro">Regístrate aquí</Link></p>
                         </Col>
                     </Row>
                 </Container>
