@@ -139,11 +139,12 @@ function App() {
         .then((response) => {
           console.log('Recuperando información...')
           setLogin(true);
-          loginHandler(localStorage.getItem('idToken'), localStorage.getItem('uid'));
+          loginHandler(localStorage.getItem('idToken'), response.data.users[0].localId);
         })
         .catch((error) => {
           console.log(error);
           console.log('Sesión expirada');
+          provocarLogout();
         })
     }
 
