@@ -1,4 +1,4 @@
-import { Form, Container, Row, Col, Button} from "react-bootstrap";
+import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import { useState, useContext, useEffect } from "react";
 import GlobalContext from "../store/globalContext";
 import CarritoContext from "../store/carritoContext";
@@ -49,6 +49,41 @@ function Formulario() {
         }
     }, [login]);
 
+    const actualizarStockProducto = (indice, cantidad) => {
+        axios.get('https://webapp-react-jm-ines-2025-default-rtdb.europe-west1.firebasedatabase.app/productos/' + indice + '.json')
+            .then((response) => {
+                const stock_producto = response.data.stock;
+                let aux;
+                if (stock_producto - cantidad > 5) {
+                    aux = stock_producto - cantidad;
+                } else {
+                    aux = 100;
+                }
+
+                const stockActualizado = {
+                    imagen: response.data.imagen,
+                    categoría: response.data.categoría,
+                    nombre: response.data.nombre,
+                    precio: response.data.precio,
+                    stock: aux
+                }
+                axios.put('https://webapp-react-jm-ines-2025-default-rtdb.europe-west1.firebasedatabase.app/productos/' + indice + '.json?auth=' + idToken, stockActualizado)
+                    .then((response) => {
+                        alert('Producto editado correctamente');
+                    })
+                    .catch((error) => {
+                        alert('¡Se ha producido un error!');
+                    })
+            })
+            .catch((error) => { console.log('¡Ha ocurrido un error!') })
+    }
+
+    const actualizarStock = () => {
+        for (let i = 0; i < listaProductos.length; i++) {
+            actualizarStockProducto(listaProductos[i][0], listaProductos[i][1]);
+        }
+    }
+
     const submitHandler = (event) => {
         event.preventDefault();
         console.log(emailTemp);
@@ -91,6 +126,7 @@ function Formulario() {
             axios.post('https://webapp-react-jm-ines-2025-default-rtdb.europe-west1.firebasedatabase.app/pedidos.json?auth=' + idToken, pedidoData)
                 .then((response) => {
                     alert('Pedido añadido correctamente');
+                    actualizarStock();
                     vaciarCarrito();
                     setTimeout(() => { navega('/agradecimiento') }, 500);
                 })
@@ -130,6 +166,7 @@ function Formulario() {
                     axios.post('https://webapp-react-jm-ines-2025-default-rtdb.europe-west1.firebasedatabase.app/pedidos.json?auth=' + response.data.idToken, pedidoData)
                         .then((response) => {
                             alert('Pedido añadido correctamente');
+                            actualizarStock();
                             vaciarCarrito();
                             setTimeout(() => { navega('/agradecimiento') }, 500);
                         })
@@ -237,8 +274,8 @@ function Formulario() {
                     <Row>
                         <Col className='p-2'>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <Button variant='danger'><Link to="/" style={{ color: 'white', textDecoration: 'none' }}>CANCELAR PEDIDO</Link></Button>
-                            <div>
+                                <Button variant='danger'><Link to="/" style={{ color: 'white', textDecoration: 'none' }}>CANCELAR PEDIDO</Link></Button>
+                                <div>
                                     <Button type='submit' variant='success' style={{ fontWeight: 'bold' }}>REALIZAR PEDIDO</Button>
                                 </div>
                             </div>
