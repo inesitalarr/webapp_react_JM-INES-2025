@@ -12,6 +12,7 @@ import Formulario from './pages/formulario.jsx'
 import Confirmation from './pages/confirmation.jsx'
 import Agradecimiento from './pages/agradecimiento.jsx'
 import Pedidos from './pages/pedidos.jsx'
+import Register from './pages/register.jsx'
 
 function App() {
 
@@ -173,6 +174,7 @@ function App() {
             <Route path='/confirmation' element={<Confirmation />} />
             <Route path='/agradecimiento' element={<Agradecimiento />} />
             <Route path='/pedidos' element={<Pedidos />} />
+            <Route path='/registro' element={<Register />} />
             <Route path='*' element={<h1>404 - Not found</h1>} />
           </Routes>
           <Footer />
