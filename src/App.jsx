@@ -13,6 +13,7 @@ import Confirmation from './pages/confirmation.jsx'
 import Agradecimiento from './pages/agradecimiento.jsx'
 import Pedidos from './pages/pedidos.jsx'
 import Register from './pages/register.jsx'
+import axios from 'axios'
 
 function App() {
 
@@ -80,7 +81,7 @@ function App() {
 
         carritoLocalStorage(aux);
 
-        
+
       }
     }
 
@@ -130,17 +131,29 @@ function App() {
   }
 
   useEffect(() => {
-    if (localStorage.getItem('login') === 'true') {
-      setLogin(true);
-      loginHandler(localStorage.getItem('idToken'), localStorage.getItem('uid'));
+    const authData = {
+      idToken: localStorage.getItem('idToken')
     }
+    if (localStorage.getItem('login') === 'true') {
+      axios.post('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyDw-qrJJtrzAnjQY1eB6tUbruo3TanpKRc', authData)
+        .then((response) => {
+          console.log('Recuperando información...')
+          setLogin(true);
+          loginHandler(localStorage.getItem('idToken'), localStorage.getItem('uid'));
+        })
+        .catch((error) => {
+          console.log(error);
+          console.log('Sesión expirada');
+        })
+    }
+
     let aux = localStorage.getItem('listaProductos');
     if (aux !== null) {
       aux = aux.split(';');
       let lista = [];
       for (let i = 0; i < aux.length; i++) {
         lista.push(aux[i].split(','));
-        
+
       }
       setListaProductos(lista);
     }
@@ -154,11 +167,11 @@ function App() {
 
   const carritoLocalStorage = (carrito) => {
     let aux = '';
-      for (let i = 0; i < carrito.length; i++) {
-        aux += carrito[i][0] + ',' + carrito[i][1] + ';';
-      }
-      localStorage.setItem('listaProductos', aux);
+    for (let i = 0; i < carrito.length; i++) {
+      aux += carrito[i][0] + ',' + carrito[i][1] + ';';
     }
+    localStorage.setItem('listaProductos', aux);
+  }
 
   return (
     <>
