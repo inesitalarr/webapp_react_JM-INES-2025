@@ -137,7 +137,7 @@ function App() {
     if (localStorage.getItem('login') === 'true') {
       axios.post('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyDw-qrJJtrzAnjQY1eB6tUbruo3TanpKRc', authData)
         .then((response) => {
-          console.log('Recuperando información...')
+          console.log('Recuperando información...');
           setLogin(true);
           loginHandler(localStorage.getItem('idToken'), response.data.users[0].localId);
         })

@@ -69,7 +69,7 @@ function Formulario() {
                 }
                 axios.put('https://webapp-react-jm-ines-2025-default-rtdb.europe-west1.firebasedatabase.app/productos/' + indice + '.json?auth=' + idToken, stockActualizado)
                     .then((response) => {
-                        alert('Producto editado correctamente');
+                        console.log('Producto editado correctamente');
                     })
                     .catch((error) => {
                         alert('¡Se ha producido un error!');
