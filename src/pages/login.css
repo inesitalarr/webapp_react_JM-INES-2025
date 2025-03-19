@@ -1,5 +1,5 @@
 body.login-background {
-    background-image: url('imgs/icons/fondo2.gif'); /* Ruta a tu imagen de fondo */
+    background-image: url('../assets/imgs/icons/fondo2.gif'); /* Ruta a tu imagen de fondo */
     background-size: cover;
     background-position: center;
     display: flex;

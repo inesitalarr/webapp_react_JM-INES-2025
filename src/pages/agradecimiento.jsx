@@ -8,8 +8,8 @@ function Agradecimiento() {
     <Container className="text-center mt-1">
       <Row>
         <Col>
-          <h1 className="display-4">¡Gracias por tu compra!</h1>
-          <p className="lead">Tu pedido ha sido realizado con éxito.</p>
+          <h1 className="display-4" style={{color: 'white'}}>¡Gracias por tu compra!</h1>
+          <p className="lead" style={{color: 'white'}}>Tu pedido ha sido realizado con éxito.</p>
           <div className="my-4">
             <img
               src="/imgs/icons/final.gif"

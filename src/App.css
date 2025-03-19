@@ -42,6 +42,6 @@
 }
 
 body{
-  background-image: url('imgs/icons/fondo.gif');
+  background-image: url('./assets/imgs/icons/fondo.gif');
  
 }
