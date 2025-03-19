@@ -86,7 +86,7 @@ function Confirmation() {
 
               <Button variant='dark' style={{ marginLeft: '50px', marginRight: '10px' }} ><Link to="/" style={{ color: 'white', textDecoration: 'none' }}>SEGUIR COMPRANDO</Link></Button>
               <Button variant='success' disabled={productArray.length === 0}>
-                <Link to="/formulario" style={{ color: 'white', textDecoration: 'none' }}>REALIZAR PEDIDO</Link>
+                <Link to="/formulario" style={{ color: 'white', textDecoration: 'none' }}>CONTINUAR</Link>
               </Button>
             </div>
           </div>
