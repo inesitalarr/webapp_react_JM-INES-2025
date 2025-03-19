@@ -95,9 +95,9 @@ function Header(props) {
                             <Link to='/carrito'>
                                 <div className={`cart-icon ${props.isCartHighlighted ? 'highlighted' : ''} ${props.isCartHighlightedRed ? 'highlighted-red' : ''}`}>
                                     {numItems > 0 ?
-                                        <span class="position-absolute top-20 start-99 translate-middle badge rounded-pill bg-danger" >
+                                        <span className="position-absolute top-20 start-99 translate-middle badge rounded-pill bg-danger" >
                                             {numItems}
-                                            < span class="visually-hidden" > unread messages</span>
+                                            < span className="visually-hidden" > unread messages</span>
                                         </span>
                                         : null}
 

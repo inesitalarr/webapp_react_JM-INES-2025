@@ -14,6 +14,12 @@ function Product(props) {
     // Verificar si el producto existe en listaProductos
     const productoEnCarrito = listaProductos.find(item => item[0] === props.indice);
 
+    // Verificar que no se piden más unidades de las que hay en stock
+    let maximoAlcanzado = true;
+    if (productoEnCarrito) {
+        maximoAlcanzado = productoEnCarrito[1] < props.producto.stock;
+    }
+
     return (
         <tr>
             <td>
@@ -39,13 +45,18 @@ function Product(props) {
                     value={props.indice}
                     disabled={!productoEnCarrito}
                 >
-                -
+                    -
                 </Button>
 
 
             </td>
             <td>
-                <Button variant='secondary' onClick={masHandler} value={props.indice}>+</Button>
+                <Button
+                    variant='secondary'
+                    onClick={masHandler}
+                    value={props.indice}
+                    disabled={!maximoAlcanzado}
+                >+</Button>
             </td>
         </tr>
     );
