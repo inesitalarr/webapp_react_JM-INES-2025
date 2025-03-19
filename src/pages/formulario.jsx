@@ -52,7 +52,7 @@ function Formulario() {
         }
     }, [login]);
 
-    const actualizarStockProducto = (indice, cantidad) => {
+    const actualizarStockProducto = (indice, cantidad, idTokenArgv) => {
         axios.get('https://webapp-react-jm-ines-2025-default-rtdb.europe-west1.firebasedatabase.app/productos/' + indice + '.json')
             .then((response) => {
                 const stock_producto = response.data.stock;
@@ -70,7 +70,7 @@ function Formulario() {
                     precio: response.data.precio,
                     stock: aux
                 }
-                axios.put('https://webapp-react-jm-ines-2025-default-rtdb.europe-west1.firebasedatabase.app/productos/' + indice + '.json?auth=' + idToken, stockActualizado)
+                axios.put('https://webapp-react-jm-ines-2025-default-rtdb.europe-west1.firebasedatabase.app/productos/' + indice + '.json?auth=' + idTokenArgv, stockActualizado)
                     .then((response) => {
                         console.log('Producto editado correctamente');
                     })
@@ -81,9 +81,9 @@ function Formulario() {
             .catch((error) => { console.log('¡Ha ocurrido un error!') })
     }
 
-    const actualizarStock = () => {
+    const actualizarStock = (idTokenArgv) => {
         for (let i = 0; i < listaProductos.length; i++) {
-            actualizarStockProducto(listaProductos[i][0], listaProductos[i][1]);
+            actualizarStockProducto(listaProductos[i][0], listaProductos[i][1], idTokenArgv);
         }
     }
 
@@ -129,7 +129,7 @@ function Formulario() {
             axios.post('https://webapp-react-jm-ines-2025-default-rtdb.europe-west1.firebasedatabase.app/pedidos.json?auth=' + idToken, pedidoData)
                 .then((response) => {
                     generarToast('Pedido realizado correctamente', 'success');
-                    actualizarStock();
+                    actualizarStock(idToken);
                     vaciarCarrito();
                     setTimeout(() => { navega('/agradecimiento') }, 500);
                 })
@@ -167,9 +167,9 @@ function Formulario() {
                         fecha: current_time.getDate() + '/' + (current_time.getMonth() + 1) + '/' + current_time.getFullYear()
                     }
                     axios.post('https://webapp-react-jm-ines-2025-default-rtdb.europe-west1.firebasedatabase.app/pedidos.json?auth=' + response.data.idToken, pedidoData)
-                        .then((response) => {
+                        .then((response2) => {
                             generarToast('Pedido realizado correctamente', 'success');
-                            actualizarStock();
+                            actualizarStock(response.data.idToken);
                             vaciarCarrito();
                             setTimeout(() => { navega('/agradecimiento') }, 500);
                         })
