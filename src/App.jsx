@@ -14,6 +14,8 @@ import Agradecimiento from './pages/agradecimiento.jsx'
 import Pedidos from './pages/pedidos.jsx'
 import Register from './pages/register.jsx'
 import axios from 'axios'
+import { Toast, ToastContainer } from 'react-bootstrap';
+import ToastContext from './store/toastContext.jsx'
 
 function App() {
 
@@ -24,6 +26,8 @@ function App() {
   const [isCartHighlighted, setIsCartHighlighted] = useState(false);
   const [isCartHighlightedRed, setIsCartHighlightedRed] = useState(false);
   const [total, setTotal] = useState(0);
+  const [showToast, setShowToast] = useState(false);
+  const [mensajeToast, setMensajeToast] = useState('');
 
 
   const menosHandler = (e) => {
@@ -174,26 +178,48 @@ function App() {
     localStorage.setItem('listaProductos', aux);
   }
 
+
+  const generarToast = (mensaje) => {
+    setShowToast(true);
+    setMensajeToast(mensaje);
+  }
+
   return (
     <>
-      <GlobalContext.Provider value={{ login: login, loginHandler: loginHandler, idToken: idToken, uid: uid, provocarLogout: provocarLogout }}>
-        <CarritoContext.Provider value={{ listaProductos: listaProductos, setListaProductos: setListaProductos, menosHandler: menosHandler, masHandler: masHandler, vaciarCarrito: vaciarCarrito, total: total, totalHandler: totalHandler }}>
-          <Header isCartHighlighted={isCartHighlighted} isCartHighlightedRed={isCartHighlightedRed} />
-          <div style={{ height: 100 }}></div>
-          <Routes>
-            <Route path='/' element={<Products />} />
-            <Route path='/carrito' element={<Carrito />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/formulario' element={<Formulario />} />
-            <Route path='/confirmation' element={<Confirmation />} />
-            <Route path='/agradecimiento' element={<Agradecimiento />} />
-            <Route path='/pedidos' element={<Pedidos />} />
-            <Route path='/registro' element={<Register />} />
-            <Route path='*' element={<h1>404 - Not found</h1>} />
-          </Routes>
-          <Footer />
-        </CarritoContext.Provider>
-      </GlobalContext.Provider>
+      <ToastContext.Provider value={{ generarToast: generarToast }}>
+        <GlobalContext.Provider value={{ login: login, loginHandler: loginHandler, idToken: idToken, uid: uid, provocarLogout: provocarLogout }}>
+          <CarritoContext.Provider value={{ listaProductos: listaProductos, setListaProductos: setListaProductos, menosHandler: menosHandler, masHandler: masHandler, vaciarCarrito: vaciarCarrito, total: total, totalHandler: totalHandler }}>
+            <Header isCartHighlighted={isCartHighlighted} isCartHighlightedRed={isCartHighlightedRed} />
+            <div style={{ height: 100 }}></div>
+            <Routes>
+              <Route path='/' element={<Products />} />
+              <Route path='/carrito' element={<Carrito />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/formulario' element={<Formulario />} />
+              <Route path='/confirmation' element={<Confirmation />} />
+              <Route path='/agradecimiento' element={<Agradecimiento />} />
+              <Route path='/pedidos' element={<Pedidos />} />
+              <Route path='/registro' element={<Register />} />
+              <Route path='*' element={<h1>404 - Not found</h1>} />
+            </Routes>
+            <ToastContainer position="bottom-end" className="p-3" style={{ zIndex: 1 }}>
+              <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide>
+                <Toast.Header>
+                  <img
+                    src="/imgs/icons/logo.png"
+                    className="rounded me-2"
+                    alt=""
+                    style={{ width: 20, height: 20 }}
+                  />
+                  <strong className="me-auto">Aviso</strong>
+                </Toast.Header>
+                <Toast.Body>{mensajeToast}</Toast.Body>
+              </Toast>
+            </ToastContainer>
+            <Footer />
+          </CarritoContext.Provider>
+        </GlobalContext.Provider>
+      </ToastContext.Provider>
     </>
   )
 }

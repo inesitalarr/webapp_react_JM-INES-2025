@@ -4,7 +4,7 @@ import GlobalContext from '../store/globalContext';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router';
 import './login.css'; // Importa el archivo CSS
-
+import ToastContext from '../store/toastContext';
 
 function Login() {
 
@@ -12,6 +12,7 @@ function Login() {
     const [passwordTemp, setPasswordTemp] = useState('');
 
     const loginHandler = useContext(GlobalContext).loginHandler;
+    const generarToast = useContext(ToastContext).generarToast;
 
     const navega = useNavigate();
 
@@ -34,7 +35,8 @@ function Login() {
         }
         axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDw-qrJJtrzAnjQY1eB6tUbruo3TanpKRc', authData)
             .then((response) => {
-                alert('¡Login correcto!');
+                //alert('¡Login correcto!');
+                generarToast('¡Login correcto!');
                 console.log(response);
                 loginHandler(response.data.idToken, response.data.localId);
                 setTimeout(() => { navega('/') }, 500);
