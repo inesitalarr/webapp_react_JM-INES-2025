@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import PedidosContext from '../store/pedidosContext';
-import { Accordion, Row, Button, Toast } from 'react-bootstrap';
+import { Accordion, Row, Button, Alert } from 'react-bootstrap';
 import Pedido from '../components/products/pedido.jsx';
 import GlobalContext from '../store/globalContext';
 import { Link } from 'react-router';
@@ -65,12 +65,12 @@ function Pedidos() {
                 </Link>
             </div>
             <PedidosContext.Provider value={{ pedidos: pedidos, borrarPedido: borrarPedido }}>
-                <Row>
+                <Row className='p-6'>
                     <h2>Historial de tus pedidos</h2>
                 </Row>
                 <Row>
                     {pedidos.length === 0 ? (
-                        <p>No hay pedidos</p>
+                        <Alert>No se han realizado pedidos</Alert>
                     ) : (
                         <Accordion>
                             {pedidos.map((pedido) => {
