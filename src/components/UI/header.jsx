@@ -4,6 +4,8 @@ import { Link } from 'react-router'; // Cuidado, usa 'react-router-dom' no 'reac
 import { useContext, useState, useEffect } from 'react';
 import GlobalContext from '../../store/globalContext';
 import CarritoContext from '../../store/carritoContext';
+import 'animate.css'; // Importa animate.css
+
 
 function Header(props) {
 
@@ -77,7 +79,7 @@ function Header(props) {
             </div>
 
             <div className='header-center'>
-                <img src='/imgs/icons/titulo_eslogan.png' alt='Eslogan' width='250' />
+                <img src='/imgs/icons/titulo_eslogan.png' alt='Eslogan' width='250' className="animate__animated animate__fadeInDown" />
             </div>
 
             <div className='header-right'>
