@@ -35,7 +35,7 @@ function Product(props) {
                 <div className='producto__precio'>{props.producto.precio}</div>
             </td>
             <td>
-                <div className='producto__stock'>{props.producto.stock}</div>
+                <div className='producto__stock' >{props.producto.stock}</div>
             </td>
             <td>
 

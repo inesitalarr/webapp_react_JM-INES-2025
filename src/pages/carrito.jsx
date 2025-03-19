@@ -45,7 +45,7 @@ function Carrito() {
     <div>
       <h2 style={{color: 'white'}}>Carrito de Compra</h2>
       {cartItems.length === 0 ? (
-        <p>El carrito está vacío</p>
+        <p style={{color: 'white'}}>El carrito está vacío</p>
       ) : (
         <>
           <Table>

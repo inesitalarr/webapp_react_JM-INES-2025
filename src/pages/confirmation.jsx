@@ -62,12 +62,12 @@ function Confirmation() {
             <thead>
               <tr>
                 <th></th>
+                <th></th>
                 <th>Nombre</th>
                 <th>Precio</th>
                 <th>Cantidad</th>
                 <th>Eliminar</th>
-                <th></th>
-                <th></th>
+
               </tr>
             </thead>
             <tbody>

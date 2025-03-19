@@ -62,7 +62,7 @@ function Pedidos() {
             </div>
             <PedidosContext.Provider value={{ pedidos: pedidos, borrarPedido: borrarPedido }}>
                 <Row>
-                    <h2>Historial de tus pedidos</h2>
+                    <h2 style={{color: 'white'}}>Historial de tus pedidos</h2>
                 </Row>
                 <Row>
                     {pedidos.length === 0 ? (
