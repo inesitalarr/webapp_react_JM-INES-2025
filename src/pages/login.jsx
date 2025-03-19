@@ -3,6 +3,8 @@ import { useState, useContext } from 'react';
 import GlobalContext from '../store/globalContext';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router';
+import './login.css'; // Importa el archivo CSS
+
 
 function Login() {
 
@@ -38,7 +40,7 @@ function Login() {
 
 
     return (
-        <>
+        <div className='principal'>
             <Form onSubmit={submitHandler}>
                 <Container>
                     <Row>
@@ -65,7 +67,7 @@ function Login() {
                     </Row>
                 </Container>
             </Form>
-        </>
+        </div>
     );
 }
 

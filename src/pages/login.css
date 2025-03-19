@@ -1,0 +1,21 @@
+body {
+    background-image: url('imgs/icons/fondo2.gif'); /* Ruta a tu imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.principal {
+    background-color: rgba(197, 255, 222, 0.8); /* Beige con 80% de opacidad */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Añadir un poco de padding para que el contenido no toque los bordes */
+    border-radius: 10px; /* Añadir bordes redondeados */
+    height: 60vh; /* Asegúrate de que el fondo cubra toda la altura de la página */
+    width: 70vh; /* Asegúrate de que el fondo cubra toda la anchura de la página */
+}
