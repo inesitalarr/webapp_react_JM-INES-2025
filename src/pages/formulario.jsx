@@ -4,6 +4,7 @@ import GlobalContext from "../store/globalContext";
 import CarritoContext from "../store/carritoContext";
 import axios from "axios";
 import { useNavigate, Link } from "react-router";
+import ToastContext from "../store/toastContext";
 
 function Formulario() {
 
@@ -31,6 +32,8 @@ function Formulario() {
     const vaciarCarrito = useContext(CarritoContext).vaciarCarrito;
     const total = useContext(CarritoContext).total;
 
+    const generarToast = useContext(ToastContext).generarToast;
+
     const navega = useNavigate();
 
     useEffect(() => {
@@ -43,7 +46,7 @@ function Formulario() {
                     setEmailTemp(response.data.users[0].email);
                 })
                 .catch((error) => {
-                    alert('¡Login incorrecto!');
+                    generarToast('¡Login incorrecto!', 'danger');
                     console.log(error);
                 })
         }
@@ -72,7 +75,7 @@ function Formulario() {
                         console.log('Producto editado correctamente');
                     })
                     .catch((error) => {
-                        alert('¡Se ha producido un error!');
+                        generarToast('¡Se ha producido un error!', 'danger');
                     })
             })
             .catch((error) => { console.log('¡Ha ocurrido un error!') })
@@ -125,7 +128,7 @@ function Formulario() {
             }
             axios.post('https://webapp-react-jm-ines-2025-default-rtdb.europe-west1.firebasedatabase.app/pedidos.json?auth=' + idToken, pedidoData)
                 .then((response) => {
-                    alert('Pedido añadido correctamente');
+                    generarToast('Pedido realizado correctamente', 'success');
                     actualizarStock();
                     vaciarCarrito();
                     setTimeout(() => { navega('/agradecimiento') }, 500);
@@ -165,7 +168,7 @@ function Formulario() {
                     }
                     axios.post('https://webapp-react-jm-ines-2025-default-rtdb.europe-west1.firebasedatabase.app/pedidos.json?auth=' + response.data.idToken, pedidoData)
                         .then((response) => {
-                            alert('Pedido añadido correctamente');
+                            generarToast('Pedido realizado correctamente', 'success');
                             actualizarStock();
                             vaciarCarrito();
                             setTimeout(() => { navega('/agradecimiento') }, 500);
@@ -175,7 +178,7 @@ function Formulario() {
                         })
                 })
                 .catch((error) => {
-                    alert('¡Login incorrecto!');
+                    generarToast('¡Login incorrecto!', 'danger');
                     console.log(error);
                 })
         }

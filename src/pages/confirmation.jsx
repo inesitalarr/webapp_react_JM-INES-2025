@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import ItemConfirmation from '../components/products/itemConfirmation';
-import { Alert, Table, Nav, Button } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 import CarritoContext from '../store/carritoContext';
 import { Link } from 'react-router'; // Cambiado a 'react-router-dom'
 

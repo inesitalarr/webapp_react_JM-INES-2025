@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import PedidosContext from '../store/pedidosContext';
-import { Accordion, Row, Button, Container } from 'react-bootstrap';
+import { Accordion, Row, Button, Toast } from 'react-bootstrap';
 import Pedido from '../components/products/pedido.jsx';
 import GlobalContext from '../store/globalContext';
 import { Link } from 'react-router';
+import ToastContext from '../store/toastContext.jsx';
 
 function Pedidos() {
 
@@ -13,6 +14,8 @@ function Pedidos() {
     const idToken = useContext(GlobalContext).idToken;
     const uid = useContext(GlobalContext).uid;
     console.log(uid);
+
+    const generarToast = useContext(ToastContext).generarToast;
 
     const provocarLogout = useContext(GlobalContext).provocarLogout;
 
@@ -44,6 +47,7 @@ function Pedidos() {
                 console.log(response);
                 const updatedPedidos = pedidos.filter(pedido => pedido.id !== id);
                 setPedidos(updatedPedidos);
+                generarToast('Pedido eliminado correctamente', 'success');
             })
             .catch((error) => { console.log('¡Ha ocurrido un error!') })
     }

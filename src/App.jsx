@@ -28,6 +28,7 @@ function App() {
   const [total, setTotal] = useState(0);
   const [showToast, setShowToast] = useState(false);
   const [mensajeToast, setMensajeToast] = useState('');
+  const [varianteToast, setVarianteToast] = useState('');
 
 
   const menosHandler = (e) => {
@@ -178,10 +179,10 @@ function App() {
     localStorage.setItem('listaProductos', aux);
   }
 
-
-  const generarToast = (mensaje) => {
+  const generarToast = (mensaje, variante) => {
     setShowToast(true);
     setMensajeToast(mensaje);
+    setVarianteToast(variante);
   }
 
   return (
@@ -203,7 +204,7 @@ function App() {
               <Route path='*' element={<h1>404 - Not found</h1>} />
             </Routes>
             <ToastContainer position="bottom-end" className="p-3" style={{ zIndex: 1 }}>
-              <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide>
+              <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide bg={varianteToast}>
                 <Toast.Header>
                   <img
                     src="/imgs/icons/logo.png"
@@ -213,7 +214,9 @@ function App() {
                   />
                   <strong className="me-auto">Aviso</strong>
                 </Toast.Header>
-                <Toast.Body>{mensajeToast}</Toast.Body>
+                <Toast.Body className={['primary', 'secondary', 'success', 'danger', 'dark'].find(variant => variant === varianteToast) && 'text-white'}>
+                  {mensajeToast}
+                </Toast.Body>
               </Toast>
             </ToastContainer>
             <Footer />

@@ -27,14 +27,13 @@ function Login() {
         }
         axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDw-qrJJtrzAnjQY1eB6tUbruo3TanpKRc', authData)
             .then((response) => {
-                //alert('¡Login correcto!');
-                generarToast('¡Login correcto!');
+                generarToast('¡Login correcto!', 'primary');
                 console.log(response);
                 loginHandler(response.data.idToken, response.data.localId);
                 setTimeout(() => { navega('/') }, 500);
             })
             .catch((error) => {
-                alert('¡Login incorrecto!');
+                generarToast('¡Login incorrecto!', 'danger');
                 console.log(error);
             })
     }
