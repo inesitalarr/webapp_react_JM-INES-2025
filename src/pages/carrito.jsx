@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import ItemCarrito from '../components/products/itemCarrito';
-import { Alert, Table, Nav, Button } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 import CarritoContext from '../store/carritoContext';
 import { Link } from 'react-router'; // Cuidado, usa 'react-router-dom' no 'react-router'
 

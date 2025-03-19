@@ -4,7 +4,7 @@ import GlobalContext from '../store/globalContext';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router';
 import './login.css'; // Importa el archivo CSS
-
+import ToastContext from '../store/toastContext';
 
 function Register() {
 
@@ -13,6 +13,8 @@ function Register() {
     const [password2Temp, setPassword2Temp] = useState('');
 
     const loginHandler = useContext(GlobalContext).loginHandler;
+
+    const generarToast = useContext(ToastContext).generarToast;
 
     const navega = useNavigate();
     
@@ -37,17 +39,17 @@ function Register() {
             }
             axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDw-qrJJtrzAnjQY1eB6tUbruo3TanpKRc', authData)
                 .then((response) => {
-                    alert('Registro correcto!');
+                    generarToast('¡Registro completado correctamente!', 'primary');
                     console.log(response);
                     loginHandler(response.data.idToken, response.data.localId);
                     setTimeout(() => { navega('/') }, 500);
                 })
                 .catch((error) => {
-                    alert('Registro incorrecto!');
+                    generarToast('¡Registro incompleto!', 'danger');
                     console.log(error);
                 })
         } else {
-            alert('Las dos contraseñas deben coincidir');
+            generarToast('Las dos contraseñas deben coincidir', 'danger');
         }
     }
 
