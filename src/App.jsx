@@ -133,6 +133,8 @@ function App() {
     localStorage.removeItem('login');
     localStorage.removeItem('idToken');
     localStorage.removeItem('uid');
+
+    generarToast('Sesión cerrada exitosamente', 'danger');
   }
 
   useEffect(() => {
