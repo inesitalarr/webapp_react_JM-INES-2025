@@ -43,7 +43,7 @@ function Carrito() {
 
   return (
     <div>
-      <h2>Carrito de Compra</h2>
+      <h2 style={{color: 'white'}}>Carrito de Compra</h2>
       {cartItems.length === 0 ? (
         <p>El carrito está vacío</p>
       ) : (
@@ -72,7 +72,7 @@ function Carrito() {
             </Button>
             <div>
 
-              <Button variant='dark' style={{ marginLeft: '50px', marginRight:'10px' }} ><Link to="/" style={{ color: 'white', textDecoration: 'none' }}>SEGUIR COMPRANDO</Link></Button>
+              <Button variant='secondary' style={{ marginLeft: '50px', marginRight:'10px' }} ><Link to="/" style={{ color: 'white', textDecoration: 'none' }}>SEGUIR COMPRANDO</Link></Button>
               <Button variant='success' disabled={productArray.length === 0}>
                 <Link to="/confirmation" style={{ color: 'white', textDecoration: 'none' }}>REALIZAR PEDIDO</Link>
               </Button>

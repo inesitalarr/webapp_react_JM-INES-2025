@@ -187,49 +187,49 @@ function Formulario() {
                 <Container fluid='sm'>
                     <Row>
                         <Col className='p-2'>
-                            <Form.Label>Correo electrónico:</Form.Label>
+                            <Form.Label style={{color: 'white'}}>Correo electrónico:</Form.Label>
                             <Form.Control type='text' onChange={(event) => setEmailTemp(event.target.value)} value={emailTemp} disabled={login} />
                         </Col>
                         <Col className='p-2'>
-                            <Form.Label>Contraseña:</Form.Label>
+                            <Form.Label style={{color: 'white'}}>Contraseña:</Form.Label>
                             <Form.Control type='password' onChange={(event) => setPasswordTemp(event.target.value)} value={passwordTemp} disabled={login} />
                         </Col>
                     </Row>
                     <Row>
                         <Col className='p-2'>
-                            <Form.Label>Nombre:</Form.Label>
+                            <Form.Label style={{color: 'white'}}>Nombre:</Form.Label>
                             <Form.Control type='text' onChange={(event) => setNombreTemp(event.target.value)} value={nombreTemp} />
                         </Col>
                         <Col className='p-2'>
-                            <Form.Label>Apellidos:</Form.Label>
+                            <Form.Label style={{color: 'white'}}>Apellidos:</Form.Label>
                             <Form.Control type='text' onChange={(event) => setApellidosTemp(event.target.value)} value={apellidosTemp} />
                         </Col>
                         <Col className='p-2'>
-                            <Form.Label>Teléfono:</Form.Label>
+                            <Form.Label style={{color: 'white'}}>Teléfono:</Form.Label>
                             <Form.Control type='number' onChange={(event) => setTelefonoTemp(event.target.value)} value={telefonoTemp ? telefonoTemp : ''} />
                         </Col>
                     </Row>
                     <Row>
                         <Col className='p-2'>
-                            <Form.Label>Dirección:</Form.Label>
+                            <Form.Label style={{color: 'white'}}>Dirección:</Form.Label>
                             <Form.Control type='text' onChange={(event) => setDireccionTemp(event.target.value)} value={direccionTemp} />
                         </Col>
                         <Col className='p-2'>
-                            <Form.Label>Código Postal:</Form.Label>
+                            <Form.Label style={{color: 'white'}}>Código Postal:</Form.Label>
                             <Form.Control type='number' onChange={(event) => setCodigoPostalTemp(event.target.value)} value={codigoPostalTemp ? codigoPostalTemp : ''} />
                         </Col>
                         <Col className='p-2'>
-                            <Form.Label>Ciudad:</Form.Label>
+                            <Form.Label style={{color: 'white'}}>Ciudad:</Form.Label>
                             <Form.Control type='text' onChange={(event) => setCiudadTemp(event.target.value)} value={ciudadTemp} />
                         </Col>
                         <Col className='p-2'>
-                            <Form.Label>Provincia:</Form.Label>
+                            <Form.Label style={{color: 'white'}}>Provincia:</Form.Label>
                             <Form.Control type='text' onChange={(event) => setProvinciaTemp(event.target.value)} value={provinciaTemp} />
                         </Col>
                     </Row>
                     <Row>
                         <Col sm={2} className='p-2'>
-                            <Form.Check
+                            <Form.Check style={{color: 'white'}}
                                 value="crédito"
                                 type="radio"
                                 aria-label="radio 1"
@@ -237,7 +237,7 @@ function Formulario() {
                                 onChange={(event) => setOpcionPagoTemp(event.target.value)}
                                 checked={opcionPagoTemp === "crédito"}
                             />
-                            <Form.Check
+                            <Form.Check style={{color: 'white'}}
                                 value="débito"
                                 type="radio"
                                 aria-label="radio 2"
@@ -249,11 +249,11 @@ function Formulario() {
                         {opcionPagoTemp === "crédito" || opcionPagoTemp === "débito" ?
                             <>
                                 <Col className='p-2' sm={5}>
-                                    <Form.Label>Número de la tarjeta de {opcionPagoTemp}:</Form.Label>
+                                    <Form.Label style={{color: 'white'}}>Número de la tarjeta de {opcionPagoTemp}:</Form.Label>
                                     <Form.Control type='number' onChange={(event) => setTarjetaTemp(event.target.value)} value={tarjetaTemp ? tarjetaTemp : ''} />
                                 </Col>
                                 <Col className='p-2' sm={3}>
-                                    <Form.Label>Caducidad:</Form.Label>
+                                    <Form.Label style={{color: 'white'}}>Caducidad:</Form.Label>
                                     <Row>
                                         <Col>
                                             <Form.Control type='number' onChange={(event) => setCaducidadMesTemp(event.target.value)} value={caducidadMesTemp ? caducidadMesTemp : ''} placeholder="mm" />
@@ -264,7 +264,7 @@ function Formulario() {
                                     </Row>
                                 </Col>
                                 <Col className='p-2' sm={1}>
-                                    <Form.Label>CVV:</Form.Label>
+                                    <Form.Label style={{color: 'white'}}>CVV:</Form.Label>
                                     <Form.Control type='number' onChange={(event) => setCvvTemp(event.target.value)} value={cvvTemp ? cvvTemp : ''} />
                                 </Col>
                             </>

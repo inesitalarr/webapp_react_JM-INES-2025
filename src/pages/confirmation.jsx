@@ -53,7 +53,7 @@ function Confirmation() {
 
   return (
     <>
-      <h2>Carrito de Compra</h2>
+      <h2 style={{color: 'white'}}>Carrito de Compra</h2>
       {cartItems.length === 0 ? (
         <p>El carrito está vacío</p>
       ) : (
@@ -77,14 +77,14 @@ function Confirmation() {
               })}
             </tbody>
           </Table>
-          <h2>Total: {total.toFixed(2)} €</h2>
+          <h2 style={{color: 'white'}}>Total: {total.toFixed(2)} €</h2>
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <Button variant='danger' onClick={vaciarCarrito} disabled={productArray.length === 0}>
               <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>VACIAR CESTA</Link>
             </Button>
             <div>
 
-              <Button variant='dark' style={{ marginLeft: '50px', marginRight: '10px' }} ><Link to="/" style={{ color: 'white', textDecoration: 'none' }}>SEGUIR COMPRANDO</Link></Button>
+              <Button variant='secondary' style={{ marginLeft: '50px', marginRight: '10px' }} ><Link to="/" style={{ color: 'white', textDecoration: 'none' }}>SEGUIR COMPRANDO</Link></Button>
               <Button variant='success' disabled={productArray.length === 0}>
                 <Link to="/formulario" style={{ color: 'white', textDecoration: 'none' }}>CONTINUAR</Link>
               </Button>
