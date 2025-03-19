@@ -1,5 +1,5 @@
 import { Form, Col, Row, Container, Button } from 'react-bootstrap';
-import { useState, useContext } from 'react';
+import { useState, useContext,useEffect } from 'react';
 import GlobalContext from '../store/globalContext';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router';
@@ -14,6 +14,13 @@ function Login() {
     const loginHandler = useContext(GlobalContext).loginHandler;
 
     const navega = useNavigate();
+
+    useEffect(() => {
+        document.body.classList.add('login-background');
+        return () => {
+            document.body.classList.remove('login-background');
+        };
+    }, []);
 
     const submitHandler = (event) => {
         event.preventDefault();
@@ -40,7 +47,7 @@ function Login() {
 
 
     return (
-        <div className='principal'>
+        <div className="principal">
             <Form onSubmit={submitHandler}>
                 <Container>
                     <Row>
