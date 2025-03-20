@@ -31,7 +31,7 @@ function Products() {
 
   if (productArray.length > 0) {
     contenido =
-      <Table>
+      <Table striped bordered hover variant="dark">
         <thead>
           <tr>
             <th></th>

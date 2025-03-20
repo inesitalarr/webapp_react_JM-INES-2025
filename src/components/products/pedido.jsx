@@ -58,7 +58,7 @@ function Pedido(props) {
             </Col>
           </Row>
           <Row>
-            <Table striped bordered hover>
+            <Table striped bordered hover variant='secondary'>
               <thead>
                 <tr>
                   <th>Imagen</th>

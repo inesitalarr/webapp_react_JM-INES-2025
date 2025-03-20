@@ -5,6 +5,7 @@ import { Accordion, Row, Alert } from 'react-bootstrap';
 import Pedido from '../components/products/pedido.jsx';
 import GlobalContext from '../store/globalContext';
 import ToastContext from '../store/toastContext.jsx';
+import './pedidos.css';
 
 function Pedidos() {
 
@@ -62,7 +63,7 @@ function Pedidos() {
                     {pedidos.length === 0 ? (
                         <Alert>No se han realizado pedidos</Alert>
                     ) : (
-                        <Accordion style={{ minWidth:1200, maxWidth:1200 }}>
+                        <Accordion style={{ minWidth:1200, maxWidth:1200 }} variant="dark">
                             {pedidos.map((pedido) => {
                                 return (<Pedido key={pedido.id} id={pedido.id} fecha={pedido.fecha} total={pedido.total} listaProductos={pedido.listaProductos} opcionPago={pedido.opcionPago} tarjeta={pedido.tarjeta} />
                                 );

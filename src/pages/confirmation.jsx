@@ -58,10 +58,9 @@ function Confirmation() {
         <p>El carrito está vacío</p>
       ) : (
         <>
-          <Table>
+          <Table striped bordered hover variant="dark">
             <thead>
               <tr>
-                <th></th>
                 <th></th>
                 <th>Nombre</th>
                 <th>Precio</th>

@@ -20,9 +20,6 @@ function ItemConfirmation(props) {
                 <Image src={`/imgs/products/${props.producto.imagen}`} roundedCircle width='100' />
             </td>
             <td>
-                <div className='producto__categoria'>{props.producto.categoría}</div>
-            </td>
-            <td>
                 <h2>{props.producto.nombre}</h2>
             </td>
             <td>
