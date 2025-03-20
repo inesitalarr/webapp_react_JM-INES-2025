@@ -47,7 +47,7 @@ function Login() {
                     <Row>
                         <Col className='p-2'>
                             <Form.Label>Correo electrónico:</Form.Label>
-                            <Form.Control type='text' onChange={(event) => setEmailTemp(event.target.value)} value={emailTemp} />
+                            <Form.Control type='text' onChange={(event) => setEmailTemp(event.target.value)} value={emailTemp} style={{minWidth: 350}} />
                         </Col>
                     </Row>
                     <Row>
