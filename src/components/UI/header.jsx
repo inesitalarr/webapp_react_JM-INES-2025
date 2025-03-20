@@ -113,26 +113,6 @@ function Header(props) {
                         <Link to='/' className='nav-link' style={{ color: '#ADD8E6', textDecoration: 'none', fontWeight: 'bold', fontSize: 20, margin: 10 }}>Página principal    |</Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <OverlayTrigger
-                            placement="bottom"
-                            overlay={<Tooltip id="tooltip-cart">Ver carrito</Tooltip>}
-                        >
-                            <Link to='/carrito'>
-                                <div className={`cart-icon ${props.isCartHighlighted ? 'highlighted' : ''} ${props.isCartHighlightedRed ? 'highlighted-red' : ''}`}>
-                                    {numItems > 0 ?
-                                        <span className="position-absolute top-20 start-99 translate-middle badge rounded-pill bg-danger" >
-                                            {numItems}
-                                            < span className="visually-hidden" > unread messages</span>
-                                        </span>
-                                        : null}
-
-                                    <img src='/imgs/icons/carrito.png' alt='Carrito' width='70' />
-
-                                </div>
-                            </Link>
-                        </OverlayTrigger>
-                    </Nav.Item>
-                    <Nav.Item>
                         <Dropdown className="d-inline mx-2" autoClose="outside" data-bs-theme="dark" drop='down-centered'>
                             <Dropdown.Toggle id="dropdown-autoclose-outside" variant='dark'>
                                 <OverlayTrigger
@@ -154,11 +134,6 @@ function Header(props) {
                                 <Carrito />
                             </Dropdown.Menu>
                         </Dropdown>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <Link to={parteLink}>
-                            {parteLogin}
-                        </Link>
                     </Nav.Item>
                     <Nav.Item>
                         <Dropdown className="d-inline mx-2" autoClose="outside" data-bs-theme="dark" drop='down-centered'>
