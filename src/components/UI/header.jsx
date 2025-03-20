@@ -7,6 +7,7 @@ import CarritoContext from '../../store/carritoContext';
 import 'animate.css'; // Importa animate.css
 import Login from '../../pages/login_desp.jsx';
 import Register from '../../pages/register_desp.jsx';
+import Carrito from '../../pages/carrito_desp.jsx';
 
 
 function Header(props) {
@@ -127,6 +128,29 @@ function Header(props) {
                                 </div>
                             </Link>
                         </OverlayTrigger>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Dropdown className="d-inline mx-2" autoClose="outside" data-bs-theme="dark" drop='down-centered'>
+                            <Dropdown.Toggle id="dropdown-autoclose-outside" variant='dark'>
+                                <OverlayTrigger
+                                    placement="bottom"
+                                    overlay={<Tooltip id="tooltip-cart">Ver carrito</Tooltip>}
+                                >
+                                    <div className={`cart-icon ${props.isCartHighlighted ? 'highlighted' : ''} ${props.isCartHighlightedRed ? 'highlighted-red' : ''}`} style={{maxWidth: 70}}>
+                                        <img src='/imgs/icons/carrito.png' alt='Carrito' width='70' />
+                                        {numItems > 0 ?
+                                            <span className="position-relative top-0 start-0 translate-middle badge rounded-pill bg-danger" >
+                                                {numItems}
+                                                < span className="visually-hidden" > unread messages</span>
+                                            </span>
+                                            : null}
+                                    </div>
+                                </OverlayTrigger>
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu className='p-2'>
+                                <Carrito />
+                            </Dropdown.Menu>
+                        </Dropdown>
                     </Nav.Item>
                     <Nav.Item>
                         <Link to={parteLink}>
