@@ -138,7 +138,7 @@ function Header(props) {
                             <Dropdown.Toggle id="dropdown-autoclose-outside" variant='dark'>
                                 {parteLogin}
                             </Dropdown.Toggle>
-                            <Dropdown.Menu>
+                            <Dropdown.Menu className='p-1'>
                                 {parteDesplegable}
                             </Dropdown.Menu>
                         </Dropdown>
