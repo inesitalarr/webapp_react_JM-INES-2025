@@ -58,7 +58,7 @@ function Header(props) {
         parteLogin = (
             <OverlayTrigger
                 placement="bottom"
-                overlay={<Tooltip id="tooltip-logged-in">Ver mis pedidos</Tooltip>}
+                overlay={<Tooltip id="tooltip-logged-in">Mi cuenta</Tooltip>}
             >
                 <img src='/imgs/icons/logged_in.png' alt='Login' width='70' />
             </OverlayTrigger>
@@ -104,7 +104,9 @@ function Header(props) {
             </div>
 
             <div className='header-center'>
-                <img src='/imgs/icons/titulo_eslogan.png' alt='Eslogan' width='250' className="animate__animated animate__fadeInDown" />
+                <Link to="/">
+                    <img src='/imgs/icons/titulo_eslogan.png' alt='Eslogan' width='250' className="animate__animated animate__fadeInDown" />
+                </Link>
             </div>
 
             <div className='header-right'>
@@ -113,7 +115,7 @@ function Header(props) {
                         <Link to='/' className='nav-link' style={{ color: '#ADD8E6', textDecoration: 'none', fontWeight: 'bold', fontSize: 20, margin: 10 }}>Página principal    |</Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Dropdown className="d-inline mx-2" autoClose="outside" data-bs-theme="dark" drop='down-centered'>
+                        <Dropdown className="d-inline mx-2" autoClose="outside" data-bs-theme="dark">
                             <Dropdown.Toggle id="dropdown-autoclose-outside" variant='dark'>
                                 <OverlayTrigger
                                     placement="bottom"
@@ -130,13 +132,13 @@ function Header(props) {
                                     </div>
                                 </OverlayTrigger>
                             </Dropdown.Toggle>
-                            <Dropdown.Menu className='p-2'>
+                            <Dropdown.Menu className='p-2' align='end'>
                                 <Carrito />
                             </Dropdown.Menu>
                         </Dropdown>
                     </Nav.Item>
                     <Nav.Item>
-                        <Dropdown className="d-inline mx-2" autoClose="outside" data-bs-theme="dark" drop='down-centered'>
+                        <Dropdown className="d-inline mx-2" autoClose="outside" data-bs-theme="dark" drop='down-end'>
                             <Dropdown.Toggle id="dropdown-autoclose-outside" variant='dark'>
                                 {parteLogin}
                             </Dropdown.Toggle>

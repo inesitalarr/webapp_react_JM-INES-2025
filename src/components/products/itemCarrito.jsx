@@ -20,7 +20,7 @@ function ItemCarrito(props) {
                 <div className='producto__categoria'>{props.producto.categoría}</div>
             </td>
             <td>
-                <h2>{props.producto.nombre}</h2>
+                <h4>{props.producto.nombre}</h4>
             </td>
             <td>
                 <div className='producto__precio'>{props.producto.precio}</div>
