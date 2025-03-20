@@ -6,13 +6,10 @@ import { Routes, Route } from 'react-router'
 import Products from './pages/products.jsx'
 import Header from './components/UI/header.jsx'
 import Footer from './components/UI/footer.jsx'
-import Carrito from './pages/carrito.jsx'
-import Login from './pages/login.jsx'
 import Formulario from './pages/formulario.jsx'
 import Confirmation from './pages/confirmation.jsx'
 import Agradecimiento from './pages/agradecimiento.jsx'
 import Pedidos from './pages/pedidos.jsx'
-import Register from './pages/register.jsx'
 import axios from 'axios'
 import { Toast, ToastContainer } from 'react-bootstrap';
 import ToastContext from './store/toastContext.jsx'
@@ -196,13 +193,10 @@ function App() {
             <div style={{ height: 100 }}></div>
             <Routes>
               <Route path='/' element={<Products />} />
-              <Route path='/carrito' element={<Carrito />} />
-              <Route path='/login' element={<Login />} />
               <Route path='/formulario' element={<Formulario />} />
               <Route path='/confirmation' element={<Confirmation />} />
               <Route path='/agradecimiento' element={<Agradecimiento />} />
               <Route path='/pedidos' element={<Pedidos />} />
-              <Route path='/registro' element={<Register />} />
               <Route path='*' element={<h1>404 - Not found</h1>} />
             </Routes>
             <ToastContainer position="bottom-end" className="p-3" style={{ zIndex: 1 }}>

@@ -5,9 +5,9 @@ import { useContext, useState, useEffect } from 'react';
 import GlobalContext from '../../store/globalContext';
 import CarritoContext from '../../store/carritoContext';
 import 'animate.css'; // Importa animate.css
-import Login from '../../pages/login_desp.jsx';
-import Register from '../../pages/register_desp.jsx';
-import Carrito from '../../pages/carrito_desp.jsx';
+import Login from '../../pages/login.jsx';
+import Register from '../../pages/register.jsx';
+import Carrito from '../../pages/carrito.jsx';
 
 
 function Header(props) {

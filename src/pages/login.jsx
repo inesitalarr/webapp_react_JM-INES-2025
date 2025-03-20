@@ -16,13 +16,6 @@ function Login() {
 
     const navega = useNavigate();
 
-    useEffect(() => {
-        document.body.classList.add('login-background');
-        return () => {
-            document.body.classList.remove('login-background');
-        };
-    }, []);
-
     const submitHandler = (event) => {
         event.preventDefault();
         console.log(emailTemp);
@@ -48,13 +41,13 @@ function Login() {
 
 
     return (
-        <div className="principal">
+        <div>
             <Form onSubmit={submitHandler}>
                 <Container>
                     <Row>
                         <Col className='p-2'>
                             <Form.Label>Correo electrónico:</Form.Label>
-                            <Form.Control type='text' onChange={(event) => setEmailTemp(event.target.value)} value={emailTemp} />
+                            <Form.Control type='text' onChange={(event) => setEmailTemp(event.target.value)} value={emailTemp} style={{minWidth: 350}} />
                         </Col>
                     </Row>
                     <Row>
@@ -66,11 +59,6 @@ function Login() {
                     <Row>
                         <Col className='p-2'>
                             <Button type='submit' variant='primary'>LOGIN</Button>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col className='p-2'>
-                            <p>¿Todavía no tienes cuenta con nosotros? <Link to="/registro">Regístrate aquí</Link></p>
                         </Col>
                     </Row>
                 </Container>
