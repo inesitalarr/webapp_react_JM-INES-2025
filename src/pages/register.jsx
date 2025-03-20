@@ -17,13 +17,6 @@ function Register() {
     const generarToast = useContext(ToastContext).generarToast;
 
     const navega = useNavigate();
-    
-    useEffect(() => {
-        document.body.classList.add('login-background');
-        return () => {
-            document.body.classList.remove('login-background');
-        };
-    }, []);
 
     const submitHandler = (event) => {
         event.preventDefault();
@@ -55,7 +48,7 @@ function Register() {
 
 
     return (
-        <div className='principal'>
+        <div>
             <Form onSubmit={submitHandler}>
                 <Container>
                     <Row>
