@@ -44,7 +44,7 @@ function Carrito() {
   return (
     <div>
       {cartItems.length === 0 ? (
-        <h3 style={{color: 'white', textAlign: 'center'}}>El carrito está vacío</h3>
+        <h6 style={{color: 'white', textAlign: 'center'}}>El carrito está vacío</h6>
       ) : (
         <>
           <Table>
