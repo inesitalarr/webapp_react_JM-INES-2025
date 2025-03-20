@@ -1,10 +1,12 @@
 import './header.css';
-import { Nav, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Nav, OverlayTrigger, Tooltip, Dropdown, DropdownButton, Tab, Tabs } from 'react-bootstrap';
 import { Link } from 'react-router'; // Cuidado, usa 'react-router-dom' no 'react-router'
 import { useContext, useState, useEffect } from 'react';
 import GlobalContext from '../../store/globalContext';
 import CarritoContext from '../../store/carritoContext';
 import 'animate.css'; // Importa animate.css
+import Login from '../../pages/login_desp.jsx';
+import Register from '../../pages/register_desp.jsx';
 
 
 function Header(props) {
@@ -48,7 +50,7 @@ function Header(props) {
     console.log("numItems: ", numItems);
 
 
-    let parteLogin, parteLink;
+    let parteLogin, parteLink, parteDesplegable;
     if (login) {
         parteLogin = (
             <OverlayTrigger
@@ -59,6 +61,12 @@ function Header(props) {
             </OverlayTrigger>
         );
         parteLink = "/pedidos";
+        parteDesplegable = (
+            <>
+                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+            </>
+        );
     } else {
         parteLogin = (
             <OverlayTrigger
@@ -69,7 +77,20 @@ function Header(props) {
             </OverlayTrigger>
         );
         parteLink = "/login"
-
+        parteDesplegable = (
+            <Tabs
+                defaultActiveKey="login"
+                id="uncontrolled-tab-example"
+                className="mb-3"
+            >
+                <Tab eventKey="login" title="Iniciar sesión">
+                    <Login />
+                </Tab>
+                <Tab eventKey="register" title="Registrarse">
+                    <Register />
+                </Tab>
+            </Tabs>
+        );
     }
 
     return (
@@ -111,6 +132,16 @@ function Header(props) {
                         <Link to={parteLink}>
                             {parteLogin}
                         </Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Dropdown className="d-inline mx-2" autoClose="outside" data-bs-theme="dark" drop='down-centered'>
+                            <Dropdown.Toggle id="dropdown-autoclose-outside" variant='dark'>
+                                {parteLogin}
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                {parteDesplegable}
+                            </Dropdown.Menu>
+                        </Dropdown>
                     </Nav.Item>
                 </Nav>
             </div >
