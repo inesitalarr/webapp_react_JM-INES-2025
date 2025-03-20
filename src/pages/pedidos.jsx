@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import PedidosContext from '../store/pedidosContext';
-import { Accordion, Row, Button, Alert } from 'react-bootstrap';
+import { Accordion, Row, Alert } from 'react-bootstrap';
 import Pedido from '../components/products/pedido.jsx';
 import GlobalContext from '../store/globalContext';
-import { Link } from 'react-router';
 import ToastContext from '../store/toastContext.jsx';
 
 function Pedidos() {
@@ -16,8 +15,6 @@ function Pedidos() {
     console.log(uid);
 
     const generarToast = useContext(ToastContext).generarToast;
-
-    const provocarLogout = useContext(GlobalContext).provocarLogout;
 
     useEffect(() => {
         axios.get('https://webapp-react-jm-ines-2025-default-rtdb.europe-west1.firebasedatabase.app/pedidos.json')
@@ -57,13 +54,6 @@ function Pedidos() {
     return (
 
         <>
-            <div style={{ position: 'fixed', top: '120px', left: '20px' }}>
-                <Link to="/">
-                    <Button variant="danger" onClick={provocarLogout}>
-                        LOGOUT
-                    </Button>
-                </Link>
-            </div>
             <PedidosContext.Provider value={{ pedidos: pedidos, borrarPedido: borrarPedido }}>
                 <Row className='p-6'>
                     <h2 style={{color: 'white'}}>Historial de tus pedidos</h2>
@@ -72,7 +62,7 @@ function Pedidos() {
                     {pedidos.length === 0 ? (
                         <Alert>No se han realizado pedidos</Alert>
                     ) : (
-                        <Accordion>
+                        <Accordion style={{ minWidth:1200, maxWidth:1200 }}>
                             {pedidos.map((pedido) => {
                                 return (<Pedido key={pedido.id} id={pedido.id} fecha={pedido.fecha} total={pedido.total} listaProductos={pedido.listaProductos} opcionPago={pedido.opcionPago} tarjeta={pedido.tarjeta} />
                                 );
