@@ -16,6 +16,8 @@ function Header(props) {
     const { listaProductos, setListaProductos } = useContext(CarritoContext);
     const [numItems, setNumItems] = useState(0);
 
+    const provocarLogout = useContext(GlobalContext).provocarLogout;
+
     useEffect(() => {
         // Obtener datos de localStorage al cargar el componente
         const storedCartItems = localStorage.getItem('listaProductos');
@@ -64,8 +66,9 @@ function Header(props) {
         parteLink = "/pedidos";
         parteDesplegable = (
             <>
-                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                <Dropdown.Item href="/pedidos">Ver pedidos</Dropdown.Item>
+                <Dropdown.Divider />
+                <Dropdown.Item onClick={provocarLogout}>Cerrar sesión</Dropdown.Item>
             </>
         );
     } else {
@@ -136,7 +139,7 @@ function Header(props) {
                                     placement="bottom"
                                     overlay={<Tooltip id="tooltip-cart">Ver carrito</Tooltip>}
                                 >
-                                    <div className={`cart-icon ${props.isCartHighlighted ? 'highlighted' : ''} ${props.isCartHighlightedRed ? 'highlighted-red' : ''}`} style={{maxWidth: 70}}>
+                                    <div className={`cart-icon ${props.isCartHighlighted ? 'highlighted' : ''} ${props.isCartHighlightedRed ? 'highlighted-red' : ''}`} style={{ maxWidth: 70 }}>
                                         <img src='/imgs/icons/carrito.png' alt='Carrito' width='70' />
                                         {numItems > 0 ?
                                             <span className="position-relative top-0 start-0 translate-middle badge rounded-pill bg-danger" >
