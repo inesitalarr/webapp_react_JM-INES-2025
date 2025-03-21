@@ -38,8 +38,22 @@ function Register() {
                     setTimeout(() => { navega('/') }, 500);
                 })
                 .catch((error) => {
-                    generarToast('¡Registro incompleto!', 'danger');
-                    console.log(error);
+                    const errorMessage = error.response?.data?.error?.message || '¡Registro incompleto!';
+                switch (errorMessage) {
+                    case 'EMAIL_EXISTS':
+                        generarToast('El correo electrónico ya está en uso.', 'danger');
+                        break;
+                    case 'INVALID_EMAIL':
+                        generarToast('El correo electrónico no es válido.', 'danger');
+                        break;
+                    case 'WEAK_PASSWORD : Password should be at least 6 characters':
+                        generarToast('Contraseña débil. Mínimo 6 carácteres o números.', 'danger');
+                        break;
+                    default:
+                        generarToast('¡Registro incompleto!', 'danger');
+                        break;
+                }
+                console.log(errorMessage);
                 })
         } else {
             generarToast('Las dos contraseñas deben coincidir', 'danger');
